@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:layout_gravity="center"
+    tools:activity=".front.activities.WordDetailsActivity">
+
+    <RelativeLayout
+        android:id="@+id/activity_words_add_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="4dp"
+        tools:targetApi="lollipop"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/activity_word_details_word_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="48dp"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textSize="20sp"
+                android:textColorHint="#666"
+                android:textColor="#fff"
+                android:text="واژه"/>
+
+            <TextView
+                android:id="@+id/activity_words_details_meaning_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="48dp"
+                android:elevation="4dp"
+                android:gravity="center"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textSize="17.5sp"
+                android:textColorHint="#666"
+                android:textColor="#fff"
+                android:text="معنی واژه"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/activity_word_details_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="56dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/activity_words_add_container"
+        android:background="@android:color/transparent"
+        android:textColor="#FFF"
+        android:textSize="25sp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:gravity="center"
+        android:elevation="6dp"
+        tools:targetApi="lollipop" />
+
+    <ImageButton
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/ok"
+        android:tint="#FFF"
+        android:background="@android:color/transparent"
+        android:onClick="onOkBtnClicked"
+        android:layout_below="@id/activity_words_add_container"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>
