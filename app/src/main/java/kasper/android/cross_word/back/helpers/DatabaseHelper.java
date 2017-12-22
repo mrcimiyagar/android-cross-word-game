@@ -3,13 +3,14 @@ package kasper.android.cross_word.back.helpers;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
-import io.realm.RealmObject;
 import kasper.android.cross_word.back.models.database.GameLevels;
 import kasper.android.cross_word.back.models.database.Me;
 import kasper.android.cross_word.back.models.database.Messages;
@@ -23,89 +24,124 @@ import kasper.android.cross_word.back.models.memory.Word;
 public class DatabaseHelper {
 
     public DatabaseHelper(Context context) {
+
         Realm.init(context);
+
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
+
         if (realm.where(Me.class).count() == 0) {
+
             Me me = realm.createObject(Me.class);
-            me.setPlayerId("");
+            me.setPlayerId(-1);
             me.setPlayerKey("");
             me.setEmail("");
             me.setName("کاربر بی نام");
             me.setScore(0);
+
+            kasper.android.cross_word.back.models.database.Tournament dLastTour =
+                    realm.createObject(kasper.android.cross_word.back.models.database.Tournament.class);
+            dLastTour.setId(-1);
+            dLastTour.setPlayersCount(0);
+            dLastTour.setLeftDays(0);
+            dLastTour.setTotalDays(0);
+            dLastTour.setActive(false);
+            me.setLastTour(dLastTour);
+
+            kasper.android.cross_word.back.models.database.Tournament dCurrTour =
+                    realm.createObject(kasper.android.cross_word.back.models.database.Tournament.class);
+            dCurrTour.setId(-1);
+            dCurrTour.setPlayersCount(0);
+            dCurrTour.setLeftDays(0);
+            dCurrTour.setTotalDays(0);
+            dCurrTour.setActive(false);
+            me.setCurrTour(dCurrTour);
         }
-        if (realm.where(GameLevels.class).findFirst() == null) {
+
+        if (realm.where(GameLevels.class).count() == 0) {
             realm.createObject(GameLevels.class);
         }
-        if (realm.where(Messages.class).findFirst() == null) {
+
+        if (realm.where(Messages.class).count() == 0) {
             realm.createObject(Messages.class);
         }
-        if (realm.where(Words.class).findFirst() == null) {
+
+        if (realm.where(Words.class).count() == 0) {
             realm.createObject(Words.class);
         }
-        realm.commitTransaction();
-        realm.close();
-    }
 
-    public Tournament getSingleTourData() {
-        Realm realm = Realm.getDefaultInstance();
-        kasper.android.cross_word.back.models.database.Tournament tournament =
-                realm.where(kasper.android.cross_word.back.models.database.Tournament.class).findFirst();
-
-        if (tournament == null) {
-            realm.close();
-            return null;
-        }
-        else {
-            Tournament mTour = new Tournament();
-            mTour.setActive(tournament.isActive());
-            mTour.setTotalDays(tournament.getPlayersCount());
-            mTour.setLeftDays(tournament.getLeftDays());
-            mTour.setPlayersCount(tournament.getPlayersCount());
-
-            return mTour;
-        }
-    }
-
-    public void updateSingleTourData(Tournament mTour) {
-        Realm realm = Realm.getDefaultInstance();
-        realm.beginTransaction();
-        kasper.android.cross_word.back.models.database.Tournament dTour =
-                realm.where(kasper.android.cross_word.back.models.database.Tournament.class).findFirst();
-        if (dTour == null) {
-            dTour = realm.createObject(kasper.android.cross_word.back.models.database.Tournament.class);
-        }
-        dTour.setActive(mTour.isActive());
-        dTour.setTotalDays(mTour.getTotalDays());
-        dTour.setLeftDays(mTour.getLeftDays());
-        dTour.setPlayersCount(mTour.getPlayersCount());
         realm.commitTransaction();
         realm.close();
     }
 
     public kasper.android.cross_word.back.models.memory.Me getMe() {
+
         Realm realm = Realm.getDefaultInstance();
+
         Me dMe = realm.where(Me.class).findFirst();
         kasper.android.cross_word.back.models.memory.Me mMe =
                 new kasper.android.cross_word.back.models.memory.Me();
+
         mMe.setPlayerId(dMe.getPlayerId());
         mMe.setPlayerKey(dMe.getPlayerKey());
         mMe.setEmail(dMe.getEmail());
         mMe.setName(dMe.getName());
         mMe.setScore(dMe.getScore());
+
+        kasper.android.cross_word.back.models.database.Tournament dLastTour = dMe.getLastTour();
+        Tournament mLastTour = new Tournament();
+        mLastTour.setId(dLastTour.getId());
+        mLastTour.setActive(dLastTour.isActive());
+        mLastTour.setPlayersCount(dLastTour.getPlayersCount());
+        mLastTour.setTotalDays(dLastTour.getTotalDays());
+        mLastTour.setLeftDays(dLastTour.getLeftDays());
+        mMe.setLastTour(mLastTour);
+
+        kasper.android.cross_word.back.models.database.Tournament dCurrTour = dMe.getCurrTour();
+        Tournament mCurrTour = new Tournament();
+        mCurrTour.setId(dCurrTour.getId());
+        mCurrTour.setActive(dCurrTour.isActive());
+        mCurrTour.setPlayersCount(dCurrTour.getPlayersCount());
+        mCurrTour.setTotalDays(dCurrTour.getTotalDays());
+        mCurrTour.setLeftDays(dCurrTour.getLeftDays());
+        mMe.setCurrTour(mCurrTour);
+
         realm.close();
         return mMe;
     }
 
     public void updateMe(kasper.android.cross_word.back.models.memory.Me me) {
+
         Realm realm = Realm.getDefaultInstance();
         realm.beginTransaction();
+
         Me dMe = realm.where(Me.class).findFirst();
         dMe.setPlayerId(me.getPlayerId());
         dMe.setPlayerKey(me.getPlayerKey());
         dMe.setEmail(me.getEmail());
         dMe.setName(me.getName());
         dMe.setScore(me.getScore());
+
+        Tournament mLastTour = me.getLastTour();
+        kasper.android.cross_word.back.models.database.Tournament dLastTour = dMe.getLastTour();
+        dLastTour.setId(mLastTour.getId());
+        dLastTour.setActive(mLastTour.isActive());
+        dLastTour.setPlayersCount(mLastTour.getPlayersCount());
+        dLastTour.setLeftDays(mLastTour.getLeftDays());
+        dLastTour.setTotalDays(mLastTour.getTotalDays());
+        dMe.setLastTour(dLastTour);
+
+        Tournament mCurrTour = me.getCurrTour();
+        kasper.android.cross_word.back.models.database.Tournament dCurrTour = dMe.getCurrTour();
+        dCurrTour.setId(mCurrTour.getId());
+        dCurrTour.setActive(mCurrTour.isActive());
+        dCurrTour.setPlayersCount(mCurrTour.getPlayersCount());
+        dCurrTour.setLeftDays(mCurrTour.getLeftDays());
+        dCurrTour.setTotalDays(mCurrTour.getTotalDays());
+        dMe.setCurrTour(dCurrTour);
+
+        Log.d("KasperLogger", new Gson().toJson(me.getCurrTour()));
+
         realm.commitTransaction();
         realm.close();
     }

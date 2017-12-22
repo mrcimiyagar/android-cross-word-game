@@ -8,6 +8,7 @@ public class TourPlayer {
     private long id;
     private String name;
     private int score;
+    private int rank;
 
     public long getId() {
         return id;
@@ -31,5 +32,13 @@ public class TourPlayer {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 }

@@ -1,9 +1,6 @@
 package kasper.android.cross_word.back.core;
 
 import android.app.Application;
-import android.util.Log;
-
-import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur;
 
 import java.util.List;
 
@@ -11,6 +8,7 @@ import kasper.android.cross_word.back.callbacks.OnGameLevelsCheckedListener;
 import kasper.android.cross_word.back.callbacks.OnGameLevelsReadListener;
 import kasper.android.cross_word.back.callbacks.OnMessagesCheckedListener;
 import kasper.android.cross_word.back.callbacks.OnMessagesReadListener;
+import kasper.android.cross_word.back.callbacks.OnMyScoreUpdatedListener;
 import kasper.android.cross_word.back.callbacks.OnTourDataReadListener;
 import kasper.android.cross_word.back.callbacks.OnWordsCheckedListener;
 import kasper.android.cross_word.back.callbacks.OnWordsReadListener;
@@ -19,6 +17,7 @@ import kasper.android.cross_word.back.helpers.DatabaseHelper;
 import kasper.android.cross_word.back.helpers.DisplayHelper;
 import kasper.android.cross_word.back.helpers.NetworkHelper;
 import kasper.android.cross_word.back.models.memory.GameLevel;
+import kasper.android.cross_word.back.models.memory.Me;
 import kasper.android.cross_word.back.models.memory.Message;
 import kasper.android.cross_word.back.models.memory.Tournament;
 import kasper.android.cross_word.back.models.memory.Word;
@@ -58,7 +57,7 @@ public class MyApp extends Application {
         this.checkUpdatesOnGameContent(callback);
     }
 
-    private final boolean[] syncTaskState = new boolean[4];
+    private final boolean[] syncTaskState = new boolean[5];
 
     private void checkUpdatesOnGameContent(final OnAppLoadCompleteListener callback) {
         for (int counter = 0; counter < this.syncTaskState.length; counter++) {
@@ -119,10 +118,29 @@ public class MyApp extends Application {
             this.networkHelper.readTourDataFromServer(new OnTourDataReadListener() {
                 @Override
                 public void tourDataRead(Tournament tournament) {
-                    MyApp.this.databaseHelper.updateSingleTourData(tournament);
+                    Me me = MyApp.this.databaseHelper.getMe();
+                    me.setCurrTour(tournament);
+                    MyApp.getInstance().getDatabaseHelper().updateMe(me);
                     MyApp.this.signMiniSyncTaskAsDone(3, callback);
                 }
             });
+
+            Me me = this.databaseHelper.getMe();
+
+            if (me.getPlayerId() >= 0 && me.getPlayerKey().length() > 0 && me.getName().length() > 0 && me.getScore() > 0) {
+
+                this.networkHelper.updateMyScoreInServer(me.getPlayerId(), me.getPlayerKey(), me.getName(), me.getScore()
+                        , new OnMyScoreUpdatedListener() {
+                    @Override
+                    public void myScoreUpdated() {
+                        MyApp.this.signMiniSyncTaskAsDone(4, callback);
+                    }
+                });
+            }
+            else {
+
+                MyApp.this.signMiniSyncTaskAsDone(4, callback);
+            }
         }
         else {
             callback.onlineSyncTaskCompleted();

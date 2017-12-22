@@ -34,7 +34,6 @@ public class GameLevelsActivity extends AppCompatActivity {
 
         this.initViews();
         this.initDecoration();
-        this.initListeners();
     }
 
     @Override
@@ -43,35 +42,20 @@ public class GameLevelsActivity extends AppCompatActivity {
         this.initContent();
     }
 
-    public void onCloseBtnClicked(View view) {
-        onBackPressed();
-    }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         overridePendingTransition(R.anim.nothing, R.anim.anim_alpha_out);
     }
 
+    public void onCloseBtnClicked(View view) {
+        onBackPressed();
+    }
+
     private void initViews() {
         scrollView = findViewById(R.id.activity_game_levels_stack_view);
         doneDataTV = findViewById(R.id.activity_offline_league_done_data_text_view);
         pendingDataTV = findViewById(R.id.activity_offline_league_pending_data_text_view);
-    }
-
-    private void initListeners() {
-        gameLevelList = MyApp.getInstance().getDatabaseHelper().getGameLevels();
-
-        doneCount = 0;
-        pendingCount = 0;
-
-        for (GameLevel mGameLevel : gameLevelList) {
-            if (mGameLevel.isDone()) {
-                doneCount++;
-            } else {
-                pendingCount++;
-            }
-        }
     }
 
     private void initDecoration() {
@@ -81,6 +65,16 @@ public class GameLevelsActivity extends AppCompatActivity {
     }
 
     private void initContent() {
+        gameLevelList = MyApp.getInstance().getDatabaseHelper().getGameLevels();
+        doneCount = 0;
+        pendingCount = 0;
+        for (GameLevel mGameLevel : gameLevelList) {
+            if (mGameLevel.isDone()) {
+                doneCount++;
+            } else {
+                pendingCount++;
+            }
+        }
         doneDataTV.setText(doneCount + " مرحله انجام شده");
         pendingDataTV.setText(pendingCount + " مرحله باقی مانده");
         scrollView.setAdapter(new OffLegAdapter(GameLevelsActivity.this, gameLevelList));

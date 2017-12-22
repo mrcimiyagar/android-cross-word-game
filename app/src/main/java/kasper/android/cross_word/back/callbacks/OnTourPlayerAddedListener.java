@@ -5,5 +5,5 @@ package kasper.android.cross_word.back.callbacks;
  */
 
 public interface OnTourPlayerAddedListener {
-    void tourPlayerAdded(long playerId);
+    void tourPlayerAdded(long playerId, String passkey);
 }

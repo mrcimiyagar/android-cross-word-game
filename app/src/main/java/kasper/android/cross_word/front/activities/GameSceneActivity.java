@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur;
+import com.jcminarro.roundkornerlayout.RoundKornerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +26,10 @@ import java.util.List;
 import eightbitlab.com.blurview.BlurView;
 import eightbitlab.com.blurview.RenderScriptBlur;
 import kasper.android.cross_word.R;
+import kasper.android.cross_word.back.callbacks.OnMyScoreUpdatedListener;
 import kasper.android.cross_word.back.core.MyApp;
 import kasper.android.cross_word.back.models.memory.GameLevel;
+import kasper.android.cross_word.back.models.memory.Me;
 import kasper.android.cross_word.front.adapters.FilledTableAdapter;
 
 public class GameSceneActivity extends AppCompatActivity {
@@ -35,9 +38,9 @@ public class GameSceneActivity extends AppCompatActivity {
     final int BLUR_HIDE_ANIMATION = 300;
 
     BlurView blurView;
-    CardView selectedWordContainer;
+    RoundKornerFrameLayout selectedWordContainer;
     TextView selectedWordTV;
-    CardView gameBoardContainer;
+    RoundKornerFrameLayout gameBoardContainer;
     RecyclerView tableRV;
 
     FilledTableAdapter tableAdapter;
@@ -78,8 +81,6 @@ public class GameSceneActivity extends AppCompatActivity {
             }
         }
         if (gameFinished) {
-            MyApp.getInstance().getDatabaseHelper()
-                    .notifyPlayerFinishedGameLevel(gameLevel.getId());
             finish();
         }
     }
@@ -245,13 +246,25 @@ public class GameSceneActivity extends AppCompatActivity {
                 nodeUsed[nodeIndex] = true;
             }
             if (checkAllWordsFoundState()) {
+                MyApp.getInstance().getDatabaseHelper()
+                        .notifyPlayerFinishedGameLevel(gameLevel.getId());
+                Me me = MyApp.getInstance().getDatabaseHelper().getMe();
+                MyApp.getInstance().getNetworkHelper().updateMyScoreInServer(me.getPlayerId(), me.getPlayerKey()
+                        , me.getName(), me.getScore(), new OnMyScoreUpdatedListener() {
+                            @Override
+                            public void myScoreUpdated() {
+
+                            }
+                        });
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        blurView.animate().alpha(1).setDuration(BLUR_SHOW_ANIMATION).start();
                         Intent intent = new Intent(GameSceneActivity.this, PresentActivity.class);
                         intent.putExtra("present-title", "پایان بازی");
                         intent.putExtra("present-content", "شما بردید !");
                         startActivity(intent);
+                        overridePendingTransition(R.anim.anim_alpha_in, R.anim.nothing);
                     }
                 }, 300);
             }

@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -13,7 +14,9 @@ import java.util.List;
 
 import kasper.android.cross_word.R;
 import kasper.android.cross_word.back.models.memory.GameLevel;
+import kasper.android.cross_word.front.activities.GameLevelsActivity;
 import kasper.android.cross_word.front.activities.GameSceneActivity;
+import kasper.android.cross_word.front.activities.PresentActivity;
 
 public class OffLegAdapter extends RecyclerView.Adapter<OffLegAdapter.OffLegHolder> {
 
@@ -32,9 +35,26 @@ public class OffLegAdapter extends RecyclerView.Adapter<OffLegAdapter.OffLegHold
     }
 
     @Override
-    public void onBindViewHolder(OffLegHolder holder, int position) {
+    public void onBindViewHolder(final OffLegHolder holder, int position) {
 
         final GameLevel gameLevel = this.gameLevels.get(position);
+
+        if (this.gameLevels.size() <= 1) {
+            holder.lockIV.setVisibility(View.GONE);
+        }
+        else {
+            if (position == 0) {
+                holder.lockIV.setVisibility(View.GONE);
+            } else {
+                GameLevel prevGameLevel = this.gameLevels.get(position - 1);
+                if (prevGameLevel.isDone()) {
+                    holder.lockIV.setVisibility(View.GONE);
+                }
+                else {
+                    holder.lockIV.setVisibility(View.VISIBLE);
+                }
+            }
+        }
 
         holder.titleBar.setText("مرحله ی " + (position + 1));
         holder.ratingBar.setRating(gameLevel.getDoneScore());
@@ -42,7 +62,15 @@ public class OffLegAdapter extends RecyclerView.Adapter<OffLegAdapter.OffLegHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context, GameSceneActivity.class).putExtra("game-level-id", gameLevel.getId()));
+                if (holder.lockIV.getVisibility() == View.GONE) {
+                    context.startActivity(new Intent(context, GameSceneActivity.class).putExtra("game-level-id", gameLevel.getId()));
+                }
+                else {
+                    Intent intent = new Intent(context, PresentActivity.class);
+                    intent.putExtra("present-title", "قفل");
+                    intent.putExtra("present-content", "این مرحله قفل است");
+                    //context.startActivity(intent);
+                }
             }
         });
     }
@@ -56,11 +84,13 @@ public class OffLegAdapter extends RecyclerView.Adapter<OffLegAdapter.OffLegHold
 
         TextView titleBar;
         RatingBar ratingBar;
+        ImageView lockIV;
 
         OffLegHolder(View itemView) {
             super(itemView);
-            this.titleBar = (TextView) itemView.findViewById(R.id.adapter_offleg_title_bar);
-            this.ratingBar = (RatingBar) itemView.findViewById(R.id.adapter_offleg_rating_bar);
+            this.titleBar = itemView.findViewById(R.id.adapter_offleg_title_bar);
+            this.ratingBar = itemView.findViewById(R.id.adapter_offleg_rating_bar);
+            this.lockIV = itemView.findViewById(R.id.adapter_offleg_lock_image_view);
         }
     }
 }

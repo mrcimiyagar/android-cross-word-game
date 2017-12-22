@@ -6,7 +6,7 @@ android {
     buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "kasper.android.cross_word"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
@@ -44,5 +44,7 @@ dependencies {
     compile 'me.everything:overscroll-decor-android:1.0.4'
     compile 'com.loopeer.library:cardstack:1.0.2'
     compile 'de.codecrafters.tableview:tableview:2.8.0'
+    compile 'com.makeramen:roundedimageview:2.3.0'
+    compile 'com.jcminarro:RoundKornerLayouts:0.3.1'
     testCompile 'junit:junit:4.12'
 }

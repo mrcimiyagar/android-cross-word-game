@@ -47,91 +47,62 @@
         android:layout_marginTop="80dp"
         android:layout_marginBottom="112dp"/>
 
-    <android.support.v7.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="2dp"
-        android:layout_marginLeft="-16dp"
-        android:layout_marginRight="-16dp">
+        android:layout_height="56dp"
+        android:elevation="4dp"
+        tools:targetApi="lollipop">
 
-        <eightbitlab.com.blurview.BlurView
-            android:id="@+id/blurView"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:text="مراحل بازی"
+            android:textStyle="bold"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="24dp">
+        <ImageButton
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/close"
+            android:tint="#fff"
+            android:onClick="onCloseBtnClicked"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textColor="#fff"
-                    android:textSize="20sp"
-                    android:text="مراحل بازی"
-                    android:textStyle="bold"
-                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+    </RelativeLayout>
 
-                <ImageButton
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/close"
-                    android:tint="#fff"
-                    android:onClick="onCloseBtnClicked"/>
-
-            </RelativeLayout>
-
-        </eightbitlab.com.blurview.BlurView>
-
-    </android.support.v7.widget.CardView>
-
-    <android.support.v7.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="112dp"
         android:layout_alignParentBottom="true"
-        app:cardBackgroundColor="@android:color/transparent"
-        android:layout_marginLeft="-16dp"
-        android:layout_marginRight="-16dp">
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:elevation="4dp"
+        tools:targetApi="lollipop">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/activity_offline_league_done_data_text_view"
             android:layout_width="match_parent"
-            android:layout_height="112dp"
-            android:background="@android:color/transparent"
-            android:layout_alignParentBottom="true"
+            android:layout_height="42dp"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:text="6 مرحله انجام شده"
             android:gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp">
+            android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/activity_offline_league_done_data_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:textColor="#FFF"
-                android:textSize="20sp"
-                android:text="6 مرحله انجام شده"
-                android:gravity="center"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/activity_offline_league_pending_data_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:text="4 مرحله باقی مانده"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="42dp"/>
 
-            <TextView
-                android:id="@+id/activity_offline_league_pending_data_text_view"
-                android:layout_width="match_parent"
-                android:layout_height="42dp"
-                android:textColor="#FFF"
-                android:textSize="20sp"
-                android:text="4 مرحله باقی مانده"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:layout_marginTop="42dp"/>
-
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
+    </RelativeLayout>
 
 </RelativeLayout>

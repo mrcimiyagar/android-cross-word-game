@@ -5,6 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+import com.google.gson.JsonObject;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -15,6 +17,8 @@ import kasper.android.cross_word.back.callbacks.OnGameLevelsCheckedListener;
 import kasper.android.cross_word.back.callbacks.OnGameLevelsReadListener;
 import kasper.android.cross_word.back.callbacks.OnMessagesCheckedListener;
 import kasper.android.cross_word.back.callbacks.OnMessagesReadListener;
+import kasper.android.cross_word.back.callbacks.OnMyScoreUpdatedListener;
+import kasper.android.cross_word.back.callbacks.OnMyTourDataReadListener;
 import kasper.android.cross_word.back.callbacks.OnTourDataReadListener;
 import kasper.android.cross_word.back.callbacks.OnTourPlayerAddedListener;
 import kasper.android.cross_word.back.callbacks.OnTourPlayersReadListener;
@@ -51,6 +55,8 @@ public class NetworkHelper {
     private final String methodReadTourData = "ReadTourData";
     private final String methodAddTourPlayer = "AddTourPlayer";
     private final String methodReadTopTourPlayers = "ReadTopTourPlayers";
+    private final String methodReadMyTourData = "ReadMyTourData";
+    private final String methodEditMyScore = "EditTourPlayer";
 
     public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) MyApp.getInstance()
@@ -411,16 +417,17 @@ public class NetworkHelper {
                     String result = response.body().string();
 
                     Log.d(LOG_TAG, result);
-                    Log.d(LOG_TAG, System.currentTimeMillis() + "");
 
                     JSONObject tourJO = new JSONObject(result);
 
+                    long id = tourJO.getLong("id");
                     boolean active = tourJO.getBoolean("active");
                     int leftDays = tourJO.getInt("leftDays");
                     int totalDays = tourJO.getInt("totalDays");
                     int playersCount = tourJO.getInt("playersCount");
 
                     Tournament tournament = new Tournament();
+                    tournament.setId(id);
                     tournament.setActive(active);
                     tournament.setLeftDays(leftDays);
                     tournament.setTotalDays(totalDays);
@@ -459,13 +466,13 @@ public class NetworkHelper {
                     String result = response.body().string();
 
                     Log.d(LOG_TAG, result);
-                    Log.d(LOG_TAG, System.currentTimeMillis() + "");
 
-                    String[] resultParts = result.split(",");
+                    String[] resultParts = result.substring(1, result.length() - 1).split(",");
 
-                    long playerId = Long.parseLong(resultParts[0]);
+                    long playerId = Long.parseLong(resultParts[1]);
+                    String passkey = resultParts[2];
 
-                    callback.tourPlayerAdded(playerId);
+                    callback.tourPlayerAdded(playerId, passkey);
 
                 } catch (Exception ignored) {
                     ignored.printStackTrace();
@@ -519,6 +526,91 @@ public class NetworkHelper {
                     }
 
                     callback.tourPlayersRead(players);
+
+                } catch (Exception ignored) {
+                    ignored.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void readMyTourDataFromServer(final long id, final OnMyTourDataReadListener callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    String urlStr = serverAddress + "/CrossWordGame/api/" + tourPlayersControllerName
+                            + "/" + methodReadMyTourData + "?firstKey=" + playerFirstKey + "&secondKey="
+                            + playerSecondKey + "&id=" + id;
+
+                    Log.d(LOG_TAG, urlStr);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(urlStr)
+                            .addHeader("Cache-Control", "no-cache")
+                            .build();
+                    request.cacheControl().noCache();
+                    Response response = client.newCall(request).execute();
+                    String result = response.body().string();
+
+                    Log.d(LOG_TAG, result);
+
+                    JSONObject playerJO = new JSONObject(result);
+
+                    long id = playerJO.getLong("id");
+                    String name = playerJO.getString("name");
+                    int score = playerJO.getInt("score");
+                    int rank = playerJO.getInt("rank");
+
+                    TourPlayer tourPlayer = new TourPlayer();
+                    tourPlayer.setId(id);
+                    tourPlayer.setName(name);
+                    tourPlayer.setScore(score);
+                    tourPlayer.setRank(rank);
+
+                    callback.myTourDataRead(tourPlayer);
+
+                } catch (Exception ignored) {
+                    ignored.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void updateMyScoreInServer(final long id, final String passkey, final String name, final int score
+            , final OnMyScoreUpdatedListener callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    String urlStr = serverAddress + "/CrossWordGame/api/" + tourPlayersControllerName
+                            + "/" + methodEditMyScore + "?firstKey=" + playerFirstKey + "&secondKey="
+                            + playerSecondKey + "&id=" + id + "&passkey=" + passkey + "&name=" + name
+                            + "&score=" + score;
+
+                    Log.d("KasperLogger", passkey);
+
+                    Log.d(LOG_TAG, urlStr);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(urlStr)
+                            .addHeader("Cache-Control", "no-cache")
+                            .build();
+                    request.cacheControl().noCache();
+                    Response response = client.newCall(request).execute();
+                    String result = response.body().string();
+
+                    Log.d(LOG_TAG, result);
+
+                    callback.myScoreUpdated();
 
                 } catch (Exception ignored) {
                     ignored.printStackTrace();

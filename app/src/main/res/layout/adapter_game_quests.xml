@@ -7,7 +7,19 @@
     app:cardBackgroundColor="@android:color/transparent">
 
     <TextView
-        android:id="@+id/adapter_game_quests_text_view"
+        android:id="@+id/adapter_game_quest_question_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical|right"
+        android:text="بدون سوال"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:textSize="25sp"
+        android:paddingLeft="32dp"
+        android:paddingRight="32dp" />
+
+    <TextView
+        android:id="@+id/adapter_game_quest_answer_empty_text_view"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:gravity="center_vertical|right"
@@ -16,13 +28,14 @@
         android:textColor="#fff"
         android:textSize="25sp"
         android:paddingLeft="32dp"
-        android:paddingRight="32dp" />
+        android:paddingRight="32dp"
+        android:layout_marginTop="56dp"/>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="#FFF"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="120dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"/>

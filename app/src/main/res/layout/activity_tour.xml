@@ -15,7 +15,8 @@
         app:tableView_columnCount="3"
         android:divider="@android:color/black"
         android:dividerHeight="1dip"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="112dp"
+        android:layout_marginBottom="56dp" />
 
     <RelativeLayout
         android:id="@+id/activity_tour_content_container"
@@ -23,40 +24,97 @@
         android:layout_height="match_parent"
         android:visibility="visible">
 
-        <android.support.v7.widget.CardView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginLeft="-16dp"
-            android:layout_marginRight="-16dp"
-            app:cardBackgroundColor="@android:color/transparent">
+            android:layout_height="56dp"
+            android:elevation="4dp"
+            tools:targetApi="lollipop">
 
-            <RelativeLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="24dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp">
+                android:textColor="#fff"
+                android:text="کاربران برتر"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textColor="#fff"
-                    android:text="کاربران برتر"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
+            <ImageButton
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/close"
+                android:tint="#fff"
+                android:onClick="onCloseBtnClicked"/>
 
-                <ImageButton
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:background="@android:color/transparent"
-                    android:src="@drawable/close"
-                    android:tint="#fff"
-                    android:onClick="onCloseBtnClicked"/>
+        </RelativeLayout>
 
-            </RelativeLayout>
+        <TextView
+            android:id="@+id/activity_tour_details_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="56dp"
+            android:textColor="#fff"
+            android:text="تورنمنت 7 روزه , 4 روز باقی مانده است"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:elevation="2dp"
+            tools:targetApi="lollipop" />
 
-        </android.support.v7.widget.CardView>
+        <LinearLayout
+            android:id="@+id/activity_tour_my_data_container"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/activity_tour_my_score_text_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="#fff"
+                android:text="250"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/activity_tour_my_name_text_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="#fff"
+                android:text="کیهان"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_weight="3"/>
+
+            <TextView
+                android:id="@+id/activity_tour_my_rank_text_view"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textColor="#fff"
+                android:text="120"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/activity_tour_register_container"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:textColor="#fff"
+            android:text="ثبت نام"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

@@ -7,17 +7,19 @@ import io.realm.RealmObject;
  */
 
 public class Me extends RealmObject {
-    private String playerId;
+    private long playerId;
     private String playerKey;
     private String email;
     private String name;
     private int score;
+    private Tournament lastTour;
+    private Tournament currTour;
 
-    public String getPlayerId() {
+    public long getPlayerId() {
         return playerId;
     }
 
-    public void setPlayerId(String playerId) {
+    public void setPlayerId(long playerId) {
         this.playerId = playerId;
     }
 
@@ -51,5 +53,21 @@ public class Me extends RealmObject {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public Tournament getLastTour() {
+        return lastTour;
+    }
+
+    public void setLastTour(Tournament lastTour) {
+        this.lastTour = lastTour;
+    }
+
+    public Tournament getCurrTour() {
+        return this.currTour;
+    }
+
+    public void setCurrTour(Tournament currTour) {
+        this.currTour = currTour;
     }
 }

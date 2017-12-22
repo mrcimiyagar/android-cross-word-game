@@ -5,10 +5,19 @@ package kasper.android.cross_word.back.models.memory;
  */
 
 public class Tournament {
+    private long id;
     private boolean active;
     private int totalDays;
     private int leftDays;
     private int playersCount;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public boolean isActive() {
         return active;

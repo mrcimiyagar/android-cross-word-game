@@ -10,38 +10,73 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
 import de.codecrafters.tableview.TableHeaderAdapter;
 import de.codecrafters.tableview.TableView;
-import de.codecrafters.tableview.listeners.SwipeToRefreshListener;
 import de.codecrafters.tableview.model.TableColumnWeightModel;
 import de.codecrafters.tableview.toolkit.TableDataRowBackgroundProviders;
 import kasper.android.cross_word.R;
+import kasper.android.cross_word.back.callbacks.OnMyScoreUpdatedListener;
+import kasper.android.cross_word.back.callbacks.OnMyTourDataReadListener;
+import kasper.android.cross_word.back.callbacks.OnTourDataReadListener;
+import kasper.android.cross_word.back.callbacks.OnTourPlayerAddedListener;
 import kasper.android.cross_word.back.callbacks.OnTourPlayersReadListener;
 import kasper.android.cross_word.back.core.MyApp;
+import kasper.android.cross_word.back.models.memory.Me;
 import kasper.android.cross_word.back.models.memory.TourPlayer;
+import kasper.android.cross_word.back.models.memory.Tournament;
 import kasper.android.cross_word.front.adapters.TourPlayerDataAdapter;
 
 public class TourActivity extends AppCompatActivity {
 
     RelativeLayout contentContainer;
+    TextView detailsTV;
     TableView tableView;
     CardView loadingView;
+    LinearLayout myDataContainer;
+    TextView myRankTV;
+    TextView myNameTV;
+    TextView myScoreTV;
+    TextView registerContainer;
+
+    boolean loading = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tour);
 
+        this.initViews();
+        this.initTable();
+        this.initContent();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.nothing, R.anim.anim_alpha_out);
+    }
+
+    public void onCloseBtnClicked(View view) {
+        onBackPressed();
+    }
+
+    private void initViews() {
         contentContainer = findViewById(R.id.activity_tour_content_container);
+        detailsTV = findViewById(R.id.activity_tour_details_text_view);
         tableView = findViewById(R.id.activity_tour_table_view);
         loadingView = findViewById(R.id.activity_tour_loading_view);
+        myDataContainer = findViewById(R.id.activity_tour_my_data_container);
+        myRankTV = findViewById(R.id.activity_tour_my_rank_text_view);
+        myNameTV = findViewById(R.id.activity_tour_my_name_text_view);
+        myScoreTV = findViewById(R.id.activity_tour_my_score_text_view);
+        registerContainer = findViewById(R.id.activity_tour_register_container);
+    }
 
-        loadingView.setVisibility(View.VISIBLE);
-        contentContainer.setVisibility(View.GONE);
-
+    private void initTable() {
         int colorEvenRows = Color.parseColor("#ffffffff");
         int colorOddRows = Color.parseColor("#ffeeeeee");
         tableView.setDataRowBackgroundProvider(TableDataRowBackgroundProviders.alternatingRowColors(colorEvenRows, colorOddRows));
@@ -80,31 +115,157 @@ public class TourActivity extends AppCompatActivity {
                 return headerView;
             }
         });
+    }
+
+    private void initContent() {
+
+        loading = true;
+
+        loadingView.setVisibility(View.VISIBLE);
+        contentContainer.setVisibility(View.GONE);
+
+        registerContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (!loading) {
+
+                    loading = true;
+
+                    loadingView.setVisibility(View.VISIBLE);
+
+                    final Me me = MyApp.getInstance().getDatabaseHelper().getMe();
+
+                    MyApp.getInstance().getNetworkHelper().addTourPlayerToServer(me.getName(), new OnTourPlayerAddedListener() {
+                        @Override
+                        public void tourPlayerAdded(final long playerId, final String passkey) {
+
+                            me.setPlayerId(playerId);
+                            me.setPlayerKey(passkey);
+
+                            MyApp.getInstance().getDatabaseHelper().updateMe(me);
+
+                            if (me.getScore() > 0) {
+
+                                MyApp.getInstance().getNetworkHelper().updateMyScoreInServer(playerId, passkey, me.getName(), me.getScore(), new OnMyScoreUpdatedListener() {
+                                    @Override
+                                    public void myScoreUpdated() {
+
+                                        MyApp.getInstance().getDatabaseHelper().updateMe(me);
+
+                                        MyApp.getInstance().getNetworkHelper().readTourDataFromServer(new OnTourDataReadListener() {
+                                            @Override
+                                            public void tourDataRead(Tournament tournament) {
+
+                                                me.setCurrTour(tournament);
+                                                me.setLastTour(tournament);
+
+                                                MyApp.getInstance().getDatabaseHelper().updateMe(me);
+
+                                                runOnUiThread(new Runnable() {
+                                                    @Override
+                                                    public void run() {
+
+                                                        Toast.makeText(TourActivity.this, "ثبت نام انجام شد", Toast.LENGTH_SHORT).show();
+
+                                                        initContent();
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            }
+        });
 
         MyApp.getInstance().getNetworkHelper().readTourPlayersFromServer(new OnTourPlayersReadListener() {
             @Override
             public void tourPlayersRead(final List<TourPlayer> players) {
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                Me me = MyApp.getInstance().getDatabaseHelper().getMe();
 
-                        contentContainer.setVisibility(View.VISIBLE);
-                        tableView.setDataAdapter(new TourPlayerDataAdapter(TourActivity.this, players));
-                        loadingView.setVisibility(View.GONE);
-                    }
-                });
+                if (me.getLastTour().getId() == me.getCurrTour().getId()) {
+
+                    MyApp.getInstance().getNetworkHelper().readMyTourDataFromServer(me.getPlayerId(), new OnMyTourDataReadListener() {
+                        @Override
+                        public void myTourDataRead(final TourPlayer tourPlayer) {
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    myRankTV.setText(tourPlayer.getRank() + "");
+                                    myNameTV.setText(tourPlayer.getName());
+                                    myScoreTV.setText(tourPlayer.getScore() + "");
+
+                                    contentContainer.setVisibility(View.VISIBLE);
+                                    tableView.setDataAdapter(new TourPlayerDataAdapter(TourActivity.this, players));
+                                    loadingView.setVisibility(View.GONE);
+                                }
+                            });
+
+                            loading = false;
+                        }
+                    });
+                }
+                else {
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            contentContainer.setVisibility(View.VISIBLE);
+                            tableView.setDataAdapter(new TourPlayerDataAdapter(TourActivity.this, players));
+                            loadingView.setVisibility(View.GONE);
+                        }
+                    });
+
+                    loading = false;
+                }
             }
         });
-    }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.nothing, R.anim.anim_alpha_out);
-    }
+        Tournament lastTour = MyApp.getInstance().getDatabaseHelper().getMe().getLastTour();
 
-    public void onCloseBtnClicked(View view) {
-        onBackPressed();
+        Tournament currTour = MyApp.getInstance().getDatabaseHelper().getMe().getCurrTour();
+
+        if (currTour.getId() == lastTour.getId()) {
+
+            registerContainer.setVisibility(View.GONE);
+
+            if (currTour.isActive()) {
+                myDataContainer.setVisibility(View.VISIBLE);
+            }
+            else {
+                myDataContainer.setVisibility(View.GONE);
+            }
+        }
+        else {
+
+            myDataContainer.setVisibility(View.GONE);
+
+            if (currTour.isActive()) {
+                registerContainer.setVisibility(View.VISIBLE);
+            }
+            else {
+                registerContainer.setVisibility(View.GONE);
+            }
+        }
+
+        if (currTour.isActive()) {
+            int totalDays = currTour.getTotalDays();
+            int leftDays = currTour.getLeftDays();
+            detailsTV.setText("تورنمنت " + totalDays + " روزه , " + leftDays + " روز باقی مانده است");
+
+            Me me = MyApp.getInstance().getDatabaseHelper().getMe();
+
+
+        }
+        else {
+            detailsTV.setText("تورنمنت غیر فعال است");
+        }
     }
 }

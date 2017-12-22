@@ -34,10 +34,18 @@ public class GameQuestsAdapter extends RecyclerView.Adapter<GameQuestsAdapter.Ga
 
     @Override
     public void onBindViewHolder(GameQuestVH holder, int position) {
+
         WordInfo wordInfo = this.wordInfos.get(position);
 
+        if (wordInfo.getQuestion().length() > 0) {
+            holder.questTV.setText(wordInfo.getQuestion());
+        }
+        else {
+            holder.questTV.setText("بدون سوال");
+        }
+
         if (wordsFound[position]) {
-            holder.questTV.setText(wordInfo.getAnswer());
+            holder.aEmptyTV.setText(wordInfo.getAnswer());
         } else {
             StringBuilder questEmptyStr = new StringBuilder();
             for (int counter = 0; counter < wordInfo.getAnswer().length(); counter++) {
@@ -46,7 +54,7 @@ public class GameQuestsAdapter extends RecyclerView.Adapter<GameQuestsAdapter.Ga
             if (questEmptyStr.length() > 0) {
                 questEmptyStr.deleteCharAt(questEmptyStr.length() - 1);
             }
-            holder.questTV.setText(questEmptyStr.toString());
+            holder.aEmptyTV.setText(questEmptyStr.toString());
         }
     }
 
@@ -58,10 +66,12 @@ public class GameQuestsAdapter extends RecyclerView.Adapter<GameQuestsAdapter.Ga
     class GameQuestVH extends RecyclerView.ViewHolder {
 
         TextView questTV;
+        TextView aEmptyTV;
 
         GameQuestVH(View itemView) {
             super(itemView);
-            this.questTV = itemView.findViewById(R.id.adapter_game_quests_text_view);
+            this.questTV = itemView.findViewById(R.id.adapter_game_quest_question_text_view);
+            this.aEmptyTV = itemView.findViewById(R.id.adapter_game_quest_answer_empty_text_view);
         }
     }
 }

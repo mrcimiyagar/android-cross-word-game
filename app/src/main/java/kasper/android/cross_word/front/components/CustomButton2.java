@@ -10,6 +10,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jcminarro.roundkornerlayout.RoundKornerFrameLayout;
+import com.jcminarro.roundkornerlayout.RoundKornerRelativeLayout;
+
 import kasper.android.cross_word.R;
 
 /**

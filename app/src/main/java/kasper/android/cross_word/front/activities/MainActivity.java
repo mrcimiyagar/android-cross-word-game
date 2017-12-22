@@ -116,6 +116,10 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.anim_alpha_in, R.anim.nothing);
     }
 
+    public void onGuideBtnClicked(View view) {
+
+    }
+
     // ***
 
     private void initBlurViews() {
