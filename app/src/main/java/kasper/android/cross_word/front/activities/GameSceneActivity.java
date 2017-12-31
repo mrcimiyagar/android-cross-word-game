@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.eightbitlab.supportrenderscriptblur.SupportRenderScriptBlur;
 import com.jcminarro.roundkornerlayout.RoundKornerFrameLayout;
@@ -30,6 +31,7 @@ import kasper.android.cross_word.back.callbacks.OnMyScoreUpdatedListener;
 import kasper.android.cross_word.back.core.MyApp;
 import kasper.android.cross_word.back.models.memory.GameLevel;
 import kasper.android.cross_word.back.models.memory.Me;
+import kasper.android.cross_word.back.models.memory.WordInfo;
 import kasper.android.cross_word.front.adapters.FilledTableAdapter;
 
 public class GameSceneActivity extends AppCompatActivity {
@@ -102,7 +104,42 @@ public class GameSceneActivity extends AppCompatActivity {
                 }
             }
         }
+        else if (requestCode == 456) {
+            if (resultCode == RESULT_OK) {
+                String resultData = data.getExtras().getString("choice");
+                if (resultData != null && resultData.equals("yes")) {
+                    Me me = MyApp.getInstance().getDatabaseHelper().getMe();
+                    if (me.getScore() + me.getMoney() > 50) {
+                        if (me.getScore() >= 50) {
+                            me.setScore(me.getScore() - 50);
+                        }
+                        else {
+                            int price = 50;
+                            price -= me.getScore();
+                            me.setScore(0);
+                            me.setMoney(me.getMoney() - price);
+                        }
+                        MyApp.getInstance().getDatabaseHelper().updateMe(me);
+                        for (int counter = 0; counter < gameLevel.getWords().size(); counter++) {
+                            if (!wordsFound[counter]) {
+                                Pair<Boolean, Integer> wordState = new Pair<>(true, counter);
+                                doWordFindingFinishJob(wordState);
+                            }
+                        }
+                    }
+                    else {
+                        Toast.makeText(this, "امتیاز کافی ندارید.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void onHelpBtnClicked(View view) {
+        blurView.animate().alpha(1).setDuration(BLUR_SHOW_ANIMATION).start();
+        startActivityForResult(new Intent(this, UseHelpActivity.class), 456);
+        overridePendingTransition(R.anim.anim_alpha_in, R.anim.nothing);
     }
 
     public void onStoreBtnClicked(View view) {
@@ -218,7 +255,7 @@ public class GameSceneActivity extends AppCompatActivity {
                     return true;
                 }
                 else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    doWordFindingFinishJob();
+                    doWordFindingFinishJob(null);
                 }
 
                 return false;
@@ -237,8 +274,11 @@ public class GameSceneActivity extends AppCompatActivity {
         }
     }
 
-    private void doWordFindingFinishJob() {
-        Pair<Boolean, Integer> wordState = checkWordInAnswers(wordIndices);
+    private void doWordFindingFinishJob(Pair<Boolean, Integer> wordState) {
+        if (wordState == null) {
+            wordState = checkWordInAnswers(wordIndices);
+        }
+
         if (wordState.first) {
             ((FilledTableAdapter) tableRV.getAdapter()).notifyWordFound(wordIndices);
             wordsFound[wordState.second] = true;

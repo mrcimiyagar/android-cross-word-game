@@ -10,6 +10,7 @@ public class Me {
     private String email;
     private String name;
     private int score;
+    private int money;
     private Tournament lastTour;
     private Tournament currTour;
 
@@ -51,6 +52,14 @@ public class Me {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
     }
 
     public Tournament getLastTour() {

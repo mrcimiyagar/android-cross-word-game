@@ -1,9 +1,11 @@
 package kasper.android.cross_word.front.activities;
 
 import android.graphics.Color;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +45,12 @@ public class TourActivity extends AppCompatActivity {
     TextView registerContainer;
 
     boolean loading = false;
+
+    int totalDays;
+
+    int days, hours, mins, seconds;
+
+    Handler timerHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,6 +184,29 @@ public class TourActivity extends AppCompatActivity {
                                     }
                                 });
                             }
+                            else {
+
+                                MyApp.getInstance().getNetworkHelper().readTourDataFromServer(new OnTourDataReadListener() {
+                                    @Override
+                                    public void tourDataRead(Tournament tournament) {
+
+                                        me.setCurrTour(tournament);
+                                        me.setLastTour(tournament);
+
+                                        MyApp.getInstance().getDatabaseHelper().updateMe(me);
+
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                Toast.makeText(TourActivity.this, "ثبت نام انجام شد", Toast.LENGTH_SHORT).show();
+
+                                                initContent();
+                                            }
+                                        });
+                                    }
+                                });
+                            }
                         }
                     });
                 }
@@ -256,16 +287,70 @@ public class TourActivity extends AppCompatActivity {
         }
 
         if (currTour.isActive()) {
-            int totalDays = currTour.getTotalDays();
-            int leftDays = currTour.getLeftDays();
-            detailsTV.setText("تورنمنت " + totalDays + " روزه , " + leftDays + " روز باقی مانده است");
 
-            Me me = MyApp.getInstance().getDatabaseHelper().getMe();
+            totalDays = currTour.getTotalDays();
 
+            long leftMillis = currTour.getStartMillis() + (totalDays * 86400000) - System.currentTimeMillis();
 
+            if (leftMillis >= 86400000) {
+                days = (int)(leftMillis / 86400000);
+                leftMillis = leftMillis % 86400000;
+            }
+
+            if (leftMillis >= 3600000) {
+                hours = (int)(leftMillis / 3600000);
+                leftMillis = leftMillis % 3600000;
+            }
+
+            if (leftMillis >= 60000) {
+                mins = (int)(leftMillis / 60000);
+                leftMillis = leftMillis % 60000;
+            }
+
+            if (leftMillis >= 1000) {
+                seconds = (int) (leftMillis / 1000);
+                leftMillis = leftMillis % 1000;
+            }
+
+            timerHandler = new Handler();
+
+            updateTimeUi();
         }
         else {
             detailsTV.setText("تورنمنت غیر فعال است");
         }
+    }
+
+    private void updateTimeUi() {
+        timerHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                seconds--;
+
+                if (seconds < 0) {
+                    seconds = 59;
+                    mins--;
+                }
+
+                if (mins < 0) {
+                    mins = 59;
+                    hours--;
+                }
+
+                if (hours < 0) {
+                    hours = 23;
+                    days--;
+                }
+
+                if (days < 0) {
+                    initContent();
+                }
+
+                detailsTV.setText("تورنمنت " + totalDays + " روزه ," + "\n" + days + "," + hours + ":" + mins + ":" + seconds + " باقی مانده است");
+
+                updateTimeUi();
+            }
+        }, 1000);
     }
 }

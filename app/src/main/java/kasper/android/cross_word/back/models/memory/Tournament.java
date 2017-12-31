@@ -8,6 +8,7 @@ public class Tournament {
     private long id;
     private boolean active;
     private int totalDays;
+    private long startMillis;
     private int leftDays;
     private int playersCount;
 
@@ -49,5 +50,13 @@ public class Tournament {
 
     public void setPlayersCount(int playersCount) {
         this.playersCount = playersCount;
+    }
+
+    public long getStartMillis() {
+        return startMillis;
+    }
+
+    public void setStartMillis(long startMillis) {
+        this.startMillis = startMillis;
     }
 }

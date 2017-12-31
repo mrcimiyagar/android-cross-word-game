@@ -5,8 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
-import com.google.gson.JsonObject;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -103,6 +101,7 @@ public class NetworkHelper {
 
                 } catch (Exception ignored) {
                     ignored.printStackTrace();
+                    callback.gameLevelsChecked(null);
                 }
             }
         }).start();
@@ -200,6 +199,7 @@ public class NetworkHelper {
 
                 } catch (Exception ignored) {
                     ignored.printStackTrace();
+                    callback.gameLevelsRead(null);
                 }
             }
         }).start();
@@ -243,6 +243,7 @@ public class NetworkHelper {
 
                 } catch (Exception ignored) {
                     ignored.printStackTrace();
+                    callback.messagesChecked(null);
                 }
             }
         }).start();
@@ -291,6 +292,7 @@ public class NetworkHelper {
 
                 } catch (Exception ignored) {
                     ignored.printStackTrace();
+                    callback.messagesRead(null);
                 }
             }
         }).start();
@@ -337,6 +339,7 @@ public class NetworkHelper {
 
                         } catch (Exception ignored) {
                             ignored.printStackTrace();
+                            callback.wordsChecked(null);
                         }
                     }
                 }).start();
@@ -388,6 +391,7 @@ public class NetworkHelper {
 
                 } catch (Exception ignored) {
                     ignored.printStackTrace();
+                    callback.wordsRead(null);
                 }
             }
         }).start();
@@ -424,6 +428,7 @@ public class NetworkHelper {
                     boolean active = tourJO.getBoolean("active");
                     int leftDays = tourJO.getInt("leftDays");
                     int totalDays = tourJO.getInt("totalDays");
+                    long startMillis = tourJO.getLong("startMillis");
                     int playersCount = tourJO.getInt("playersCount");
 
                     Tournament tournament = new Tournament();
@@ -431,12 +436,14 @@ public class NetworkHelper {
                     tournament.setActive(active);
                     tournament.setLeftDays(leftDays);
                     tournament.setTotalDays(totalDays);
+                    tournament.setStartMillis(startMillis);
                     tournament.setPlayersCount(playersCount);
 
                     callback.tourDataRead(tournament);
 
                 } catch (Exception ignored) {
                     ignored.printStackTrace();
+                    callback.tourDataRead(null);
                 }
             }
         }).start();
@@ -614,6 +621,7 @@ public class NetworkHelper {
 
                 } catch (Exception ignored) {
                     ignored.printStackTrace();
+                    callback.myScoreUpdated();
                 }
             }
         }).start();

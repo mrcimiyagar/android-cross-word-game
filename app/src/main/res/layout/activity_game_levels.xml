@@ -40,12 +40,35 @@
 
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/activity_game_levels_stack_view"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="112dp"/>
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="112dp">
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/activity_game_levels_stack_view"
+            android:layout_width="match_parent"
+            android:layout_height="256dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="112dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            android:layout_margin="16dp">
+
+            <TextView
+                android:id="@+id/activity_game_levels_current_level_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="مرحله ی 1"
+                android:textSize="30sp"
+                android:textColor="#fff"
+                android:textStyle="bold"/>
+
+        </android.support.v7.widget.CardView>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -59,7 +82,6 @@
             android:gravity="center"
             android:textColor="#fff"
             android:textSize="20sp"
-            android:text="مراحل بازی"
             android:textStyle="bold"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"/>
 

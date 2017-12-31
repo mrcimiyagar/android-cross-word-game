@@ -3,8 +3,6 @@ package kasper.android.cross_word.back.helpers;
 import android.content.Context;
 import android.util.Log;
 
-import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -87,6 +85,7 @@ public class DatabaseHelper {
         mMe.setEmail(dMe.getEmail());
         mMe.setName(dMe.getName());
         mMe.setScore(dMe.getScore());
+        mMe.setMoney(dMe.getMoney());
 
         kasper.android.cross_word.back.models.database.Tournament dLastTour = dMe.getLastTour();
         Tournament mLastTour = new Tournament();
@@ -94,6 +93,7 @@ public class DatabaseHelper {
         mLastTour.setActive(dLastTour.isActive());
         mLastTour.setPlayersCount(dLastTour.getPlayersCount());
         mLastTour.setTotalDays(dLastTour.getTotalDays());
+        mLastTour.setStartMillis(dLastTour.getStartMillis());
         mLastTour.setLeftDays(dLastTour.getLeftDays());
         mMe.setLastTour(mLastTour);
 
@@ -103,6 +103,7 @@ public class DatabaseHelper {
         mCurrTour.setActive(dCurrTour.isActive());
         mCurrTour.setPlayersCount(dCurrTour.getPlayersCount());
         mCurrTour.setTotalDays(dCurrTour.getTotalDays());
+        mCurrTour.setStartMillis(dCurrTour.getStartMillis());
         mCurrTour.setLeftDays(dCurrTour.getLeftDays());
         mMe.setCurrTour(mCurrTour);
 
@@ -121,12 +122,14 @@ public class DatabaseHelper {
         dMe.setEmail(me.getEmail());
         dMe.setName(me.getName());
         dMe.setScore(me.getScore());
+        dMe.setMoney(me.getMoney());
 
         Tournament mLastTour = me.getLastTour();
         kasper.android.cross_word.back.models.database.Tournament dLastTour = dMe.getLastTour();
         dLastTour.setId(mLastTour.getId());
         dLastTour.setActive(mLastTour.isActive());
         dLastTour.setPlayersCount(mLastTour.getPlayersCount());
+        dLastTour.setStartMillis(mLastTour.getStartMillis());
         dLastTour.setLeftDays(mLastTour.getLeftDays());
         dLastTour.setTotalDays(mLastTour.getTotalDays());
         dMe.setLastTour(dLastTour);
@@ -136,11 +139,10 @@ public class DatabaseHelper {
         dCurrTour.setId(mCurrTour.getId());
         dCurrTour.setActive(mCurrTour.isActive());
         dCurrTour.setPlayersCount(mCurrTour.getPlayersCount());
+        dCurrTour.setStartMillis(mCurrTour.getStartMillis());
         dCurrTour.setLeftDays(mCurrTour.getLeftDays());
         dCurrTour.setTotalDays(mCurrTour.getTotalDays());
         dMe.setCurrTour(dCurrTour);
-
-        Log.d("KasperLogger", new Gson().toJson(me.getCurrTour()));
 
         realm.commitTransaction();
         realm.close();

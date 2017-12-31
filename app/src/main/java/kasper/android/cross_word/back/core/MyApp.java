@@ -66,15 +66,21 @@ public class MyApp extends Application {
         if (this.networkHelper.isNetworkAvailable()) {
             this.networkHelper.recheckGameLevelsFromServer(new OnGameLevelsCheckedListener() {
                 @Override
-                public void gameLevelsChecked(List<Integer> gameLevelIds) {
-                    if (MyApp.this.databaseHelper.recheckGameLevels(gameLevelIds)) {
-                        MyApp.this.networkHelper.readGameLevelsFromServer(new OnGameLevelsReadListener() {
-                            @Override
-                            public void gameLevelsRead(List<GameLevel> gameLevels) {
-                                MyApp.this.databaseHelper.mergeGameLevelsWith(gameLevels);
-                                MyApp.this.signMiniSyncTaskAsDone(0, callback);
-                            }
-                        });
+                public void gameLevelsChecked(final List<Integer> gameLevelIds) {
+                    if (gameLevelIds != null) {
+                        if (MyApp.this.databaseHelper.recheckGameLevels(gameLevelIds)) {
+                            MyApp.this.networkHelper.readGameLevelsFromServer(new OnGameLevelsReadListener() {
+                                @Override
+                                public void gameLevelsRead(List<GameLevel> gameLevels) {
+                                    if (gameLevels != null) {
+                                        MyApp.this.databaseHelper.mergeGameLevelsWith(gameLevels);
+                                    }
+                                    MyApp.this.signMiniSyncTaskAsDone(0, callback);
+                                }
+                            });
+                        } else {
+                            MyApp.this.signMiniSyncTaskAsDone(0, callback);
+                        }
                     }
                     else {
                         MyApp.this.signMiniSyncTaskAsDone(0, callback);
@@ -84,14 +90,20 @@ public class MyApp extends Application {
             this.networkHelper.recheckMessagesFromServer(new OnMessagesCheckedListener() {
                 @Override
                 public void messagesChecked(List<Integer> messageIds) {
-                    if (MyApp.this.databaseHelper.recheckMessages(messageIds)) {
-                        MyApp.this.networkHelper.readMessagesFromServer(new OnMessagesReadListener() {
-                            @Override
-                            public void messagesRead(List<Message> messages) {
-                                MyApp.this.databaseHelper.mergeMessagesWith(messages);
-                                MyApp.this.signMiniSyncTaskAsDone(1, callback);
-                            }
-                        });
+                    if (messageIds != null) {
+                        if (MyApp.this.databaseHelper.recheckMessages(messageIds)) {
+                            MyApp.this.networkHelper.readMessagesFromServer(new OnMessagesReadListener() {
+                                @Override
+                                public void messagesRead(List<Message> messages) {
+                                    if (messages != null) {
+                                        MyApp.this.databaseHelper.mergeMessagesWith(messages);
+                                    }
+                                    MyApp.this.signMiniSyncTaskAsDone(1, callback);
+                                }
+                            });
+                        } else {
+                            MyApp.this.signMiniSyncTaskAsDone(1, callback);
+                        }
                     }
                     else {
                         MyApp.this.signMiniSyncTaskAsDone(1, callback);
@@ -100,15 +112,21 @@ public class MyApp extends Application {
             });
             this.networkHelper.recheckWordsFromServer(new OnWordsCheckedListener() {
                 @Override
-                public void wordsChecked(List<Integer> wordIds) {
-                    if (MyApp.this.databaseHelper.recheckWords(wordIds)) {
-                        MyApp.this.networkHelper.readWordsFromServer(new OnWordsReadListener() {
-                            @Override
-                            public void wordsRead(List<Word> words) {
-                                MyApp.this.databaseHelper.mergeWordsWith(words);
-                                MyApp.this.signMiniSyncTaskAsDone(2, callback);
-                            }
-                        });
+                public void wordsChecked(final List<Integer> wordIds) {
+                    if (wordIds != null) {
+                        if (MyApp.this.databaseHelper.recheckWords(wordIds)) {
+                            MyApp.this.networkHelper.readWordsFromServer(new OnWordsReadListener() {
+                                @Override
+                                public void wordsRead(List<Word> words) {
+                                    if (words != null) {
+                                        MyApp.this.databaseHelper.mergeWordsWith(words);
+                                    }
+                                    MyApp.this.signMiniSyncTaskAsDone(2, callback);
+                                }
+                            });
+                        } else {
+                            MyApp.this.signMiniSyncTaskAsDone(2, callback);
+                        }
                     }
                     else {
                         MyApp.this.signMiniSyncTaskAsDone(2, callback);
@@ -118,9 +136,11 @@ public class MyApp extends Application {
             this.networkHelper.readTourDataFromServer(new OnTourDataReadListener() {
                 @Override
                 public void tourDataRead(Tournament tournament) {
-                    Me me = MyApp.this.databaseHelper.getMe();
-                    me.setCurrTour(tournament);
-                    MyApp.getInstance().getDatabaseHelper().updateMe(me);
+                    if (tournament != null) {
+                        Me me = MyApp.this.databaseHelper.getMe();
+                        me.setCurrTour(tournament);
+                        MyApp.getInstance().getDatabaseHelper().updateMe(me);
+                    }
                     MyApp.this.signMiniSyncTaskAsDone(3, callback);
                 }
             });
@@ -129,7 +149,7 @@ public class MyApp extends Application {
 
             if (me.getPlayerId() >= 0 && me.getPlayerKey().length() > 0 && me.getName().length() > 0 && me.getScore() > 0) {
 
-                this.networkHelper.updateMyScoreInServer(me.getPlayerId(), me.getPlayerKey(), me.getName(), me.getScore()
+                this.networkHelper.updateMyScoreInServer(me.getPlayerId(), me.getPlayerKey(), me.getName(), me.getScore() + me.getMoney()
                         , new OnMyScoreUpdatedListener() {
                     @Override
                     public void myScoreUpdated() {

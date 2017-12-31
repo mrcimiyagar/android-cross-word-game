@@ -453,6 +453,8 @@
         android:id="@+id/blurView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0"/>
+        android:alpha="0"
+        android:elevation="4dp"
+        tools:targetApi="lollipop"/>
 
 </RelativeLayout>

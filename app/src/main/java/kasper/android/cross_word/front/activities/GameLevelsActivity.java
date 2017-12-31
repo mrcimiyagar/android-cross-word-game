@@ -1,9 +1,8 @@
 package kasper.android.cross_word.front.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -12,12 +11,10 @@ import java.util.List;
 import kasper.android.cross_word.R;
 import kasper.android.cross_word.back.core.MyApp;
 import kasper.android.cross_word.back.models.memory.GameLevel;
-import kasper.android.cross_word.front.adapters.OffLegAdapter;
-import kasper.android.cross_word.front.extras.LinearDecoration;
 
 public class GameLevelsActivity extends AppCompatActivity {
 
-    private RecyclerView scrollView;
+    private TextView currentLevelTV;
 
     private TextView doneDataTV;
     private TextView pendingDataTV;
@@ -26,6 +23,8 @@ public class GameLevelsActivity extends AppCompatActivity {
     private int pendingCount;
 
     List<GameLevel> gameLevelList;
+
+    int notDoneGameLevelId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +52,13 @@ public class GameLevelsActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        scrollView = findViewById(R.id.activity_game_levels_stack_view);
         doneDataTV = findViewById(R.id.activity_offline_league_done_data_text_view);
         pendingDataTV = findViewById(R.id.activity_offline_league_pending_data_text_view);
+        currentLevelTV = findViewById(R.id.activity_game_levels_current_level_text_view);
     }
 
     private void initDecoration() {
-        scrollView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        scrollView.addItemDecoration(new LinearDecoration((int)MyApp.getInstance().getDisplayHelper().dpToPx(8),
-                (int)MyApp.getInstance().getDisplayHelper().dpToPx(8)));
+
     }
 
     private void initContent() {
@@ -77,6 +74,35 @@ public class GameLevelsActivity extends AppCompatActivity {
         }
         doneDataTV.setText(doneCount + " مرحله انجام شده");
         pendingDataTV.setText(pendingCount + " مرحله باقی مانده");
-        scrollView.setAdapter(new OffLegAdapter(GameLevelsActivity.this, gameLevelList));
+
+        int counter = 1;
+        boolean foundNotDone = false;
+
+        for (GameLevel gameLevel : gameLevelList) {
+
+            if (!gameLevel.isDone()) {
+                foundNotDone = true;
+                notDoneGameLevelId = gameLevel.getId();
+                break;
+            }
+
+            counter++;
+        }
+
+        if (foundNotDone) {
+
+            currentLevelTV.setText("مرحله ی " + counter);
+
+            currentLevelTV.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    GameLevelsActivity.this.startActivity(new Intent(GameLevelsActivity.this
+                            , GameSceneActivity.class).putExtra("game-level-id", notDoneGameLevelId));
+                }
+            });
+        }
+        else {
+            currentLevelTV.setText("همه ی مراحل انجام شده است .");
+        }
     }
 }

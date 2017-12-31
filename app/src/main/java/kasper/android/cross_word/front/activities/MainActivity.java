@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         pausePageBV.animate().alpha(0).setDuration(BLUR_HIDE_ANIMATION).start();
         Me me = MyApp.getInstance().getDatabaseHelper().getMe();
         nameTV.setText(me.getName());
-        moneyTV.setText("$ " + me.getScore());
+        moneyTV.setText("$ " + (me.getScore() + me.getMoney()));
     }
 
     @Override

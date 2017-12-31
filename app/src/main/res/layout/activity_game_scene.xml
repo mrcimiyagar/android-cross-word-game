@@ -111,6 +111,7 @@
                     android:layout_weight="1"
                     android:layout_margin="8dp"
                     app:corner_radius="14dp"
+                    android:onClick="onHelpBtnClicked"
                     android:background="@drawable/button_background_gradient">
 
                     <TextView

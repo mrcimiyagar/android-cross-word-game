@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:layout_gravity="center"
+    tools:context="kasper.android.cross_word.front.activities.UseHelpActivity">
+
+    <RelativeLayout
+        android:id="@+id/activity_game_exit_title_text_view"
+        android:layout_width="360dp"
+        android:layout_height="160dp"
+        android:elevation="4dp"
+        tools:targetApi="lollipop"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:color/transparent">
+
+        <TextView
+            android:id="@+id/activity_account_email_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginTop="56dp"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="آیا میخواهید از کمک استفاده کنید ؟"
+            android:textColor="#FFF"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="112dp"
+        android:layout_height="56dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/activity_game_exit_title_text_view"
+        android:layout_marginBottom="-28dp"
+        android:background="@android:color/transparent"
+        android:text="کمک"
+        android:textColor="#FFF"
+        android:textSize="25sp"
+        android:gravity="center"
+        android:elevation="6dp"
+        tools:targetApi="lollipop" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:layout_below="@id/activity_game_exit_title_text_view"
+        android:layout_marginTop="-44dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:elevation="4dp"
+        tools:targetApi="lollipop">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:background="@android:color/transparent"
+            android:drawableRight="@drawable/ok"
+            android:text="بله"
+            android:textColor="#fff"
+            android:textSize="22.5sp"
+            android:layout_marginRight="64dp"
+            android:onClick="onOkBtnClicked"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="56dp"
+            android:background="@android:color/transparent"
+            android:drawableRight="@drawable/close"
+            android:text="نه"
+            android:textColor="#fff"
+            android:textSize="22.5sp"
+            android:onClick="onCancelBtnClicked"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
