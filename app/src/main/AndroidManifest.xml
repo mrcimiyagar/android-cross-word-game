@@ -74,6 +74,9 @@
         <activity android:name=".front.activities.TourActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Transparent"/>
+        <activity android:name=".front.activities.UseHelpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent"/>
     </application>
 
 </manifest>

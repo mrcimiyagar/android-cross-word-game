@@ -1,6 +1,7 @@
 package kasper.android.cross_word.front.adapters;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +92,7 @@ public class FilledTableAdapter extends RecyclerView.Adapter<FilledTableAdapter.
     }
 
     public void notifyWordFound(List<Integer> wordIndices) {
+        Log.d("KasperLogger", "hello ! " + wordIndices.size());
         for (int charIndex : wordIndices) {
             this.used[charIndex] = true;
             itemsViews[charIndex].animate().scaleX(0.25f).scaleY(0.25f).alpha(0).setDuration(250).start();

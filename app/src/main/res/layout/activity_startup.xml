@@ -25,13 +25,11 @@
             android:progressTint="#6603A9F4"
             tools:targetApi="lollipop" />
 
-        <android.support.v7.widget.CardView
+        <com.jcminarro.roundkornerlayout.RoundKornerFrameLayout
             android:layout_width="176dp"
             android:layout_height="176dp"
             android:layout_centerInParent="true"
-            app:cardCornerRadius="88dp"
-            app:cardBackgroundColor="@android:color/transparent"
-            app:cardElevation="6dp">
+            app:corner_radius="88dp">
 
             <eightbitlab.com.blurview.BlurView
                 android:id="@+id/blurView"
@@ -53,7 +51,7 @@
 
             </eightbitlab.com.blurview.BlurView>
 
-        </android.support.v7.widget.CardView>
+        </com.jcminarro.roundkornerlayout.RoundKornerFrameLayout>
 
     </RelativeLayout>
 

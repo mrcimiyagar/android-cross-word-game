@@ -37,7 +37,7 @@ public class NetworkHelper {
     
     private final String LOG_TAG = "NetworkHelper";
 
-    private final String serverAddress = "http://136.243.229.153";
+    private final String serverAddress = "http://kaspersoft.ir";
     private final String playerFirstKey = "ds56f4gcvx1nr8y7j98wr765q4th314aryk657a65rt4h1b32xa1b658a5et74h";
     private final String playerSecondKey = "32g1j,687tu4k789q7ryj64aeb321a6e8r7g651b32adn1468at7eh65a1b35ad54fb";
     private final String gameLevelsControllerName = "GameLevels";
@@ -71,7 +71,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + gameLevelsControllerName
+                    String urlStr = serverAddress + "/api/" + gameLevelsControllerName
                             + "/" + methodReadGameLevelIds + "?firstKey=" + playerFirstKey + "&secondKey="
                             + playerSecondKey + "&updateVersion=" + System.currentTimeMillis();
 
@@ -115,7 +115,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + gameLevelsControllerName
+                    String urlStr = serverAddress + "/api/" + gameLevelsControllerName
                             + "/" + methodReadGameLevels + "?firstKey=" + playerFirstKey + "&secondKey="
                             + playerSecondKey + "&updateVersion=" + System.currentTimeMillis();
 
@@ -213,7 +213,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + messagesControllerName
+                    String urlStr = serverAddress + "/api/" + messagesControllerName
                             + "/" + methodReadMessageIds + "?firstKey=" + playerFirstKey + "&secondKey="
                             + playerSecondKey + "&updateVersion=" + System.currentTimeMillis();
 
@@ -257,7 +257,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + messagesControllerName
+                    String urlStr = serverAddress + "/api/" + messagesControllerName
                             + "/" + methodReadMessages + "?firstKey=" + playerFirstKey + "&secondKey="
                             + playerSecondKey + "&updateVersion=" + System.currentTimeMillis();
 
@@ -309,7 +309,7 @@ public class NetworkHelper {
 
                         try {
 
-                            String urlStr = serverAddress + "/CrossWordGame/api/" + wordsControllerName
+                            String urlStr = serverAddress + "/api/" + wordsControllerName
                                     + "/" + methodReadWordIds + "?firstKey=" + playerFirstKey + "&secondKey="
                                     + playerSecondKey + "&updateVersion=" + System.currentTimeMillis();
 
@@ -355,7 +355,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + wordsControllerName
+                    String urlStr = serverAddress + "/api/" + wordsControllerName
                             + "/" + methodReadWords + "?firstKey=" + playerFirstKey + "&secondKey="
                             + playerSecondKey + "&updateVersion=" + System.currentTimeMillis();
 
@@ -405,7 +405,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + tourPlayersControllerName
+                    String urlStr = serverAddress + "/api/" + tourPlayersControllerName
                             + "/" + methodReadTourData + "?firstKey=" + playerFirstKey + "&secondKey="
                             + playerSecondKey + "&updateVersion=" + System.currentTimeMillis();
 
@@ -457,7 +457,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + tourPlayersControllerName
+                    String urlStr = serverAddress + "/api/" + tourPlayersControllerName
                             + "/" + methodAddTourPlayer + "?firstKey=" + playerFirstKey + "&secondKey="
                             + playerSecondKey + "&name=" + name;
 
@@ -496,7 +496,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + tourPlayersControllerName
+                    String urlStr = serverAddress + "/api/" + tourPlayersControllerName
                             + "/" + methodReadTopTourPlayers + "?firstKey=" + playerFirstKey + "&secondKey="
                             + playerSecondKey + "&updateVersion=" + System.currentTimeMillis();
 
@@ -549,7 +549,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + tourPlayersControllerName
+                    String urlStr = serverAddress + "/api/" + tourPlayersControllerName
                             + "/" + methodReadMyTourData + "?firstKey=" + playerFirstKey + "&secondKey="
                             + playerSecondKey + "&id=" + id;
 
@@ -597,7 +597,7 @@ public class NetworkHelper {
 
                 try {
 
-                    String urlStr = serverAddress + "/CrossWordGame/api/" + tourPlayersControllerName
+                    String urlStr = serverAddress + "/api/" + tourPlayersControllerName
                             + "/" + methodEditMyScore + "?firstKey=" + playerFirstKey + "&secondKey="
                             + playerSecondKey + "&id=" + id + "&passkey=" + passkey + "&name=" + name
                             + "&score=" + score;

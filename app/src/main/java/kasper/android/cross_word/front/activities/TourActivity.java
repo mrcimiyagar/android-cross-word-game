@@ -144,6 +144,10 @@ public class TourActivity extends AppCompatActivity {
 
                     final Me me = MyApp.getInstance().getDatabaseHelper().getMe();
 
+                    me.setScore(0);
+
+                    MyApp.getInstance().getDatabaseHelper().updateMe(me);
+
                     MyApp.getInstance().getNetworkHelper().addTourPlayerToServer(me.getName(), new OnTourPlayerAddedListener() {
                         @Override
                         public void tourPlayerAdded(final long playerId, final String passkey) {
@@ -155,7 +159,8 @@ public class TourActivity extends AppCompatActivity {
 
                             if (me.getScore() > 0) {
 
-                                MyApp.getInstance().getNetworkHelper().updateMyScoreInServer(playerId, passkey, me.getName(), me.getScore(), new OnMyScoreUpdatedListener() {
+                                MyApp.getInstance().getNetworkHelper().updateMyScoreInServer(playerId, passkey
+                                        , me.getName(), me.getScore() + me.getMoney(), new OnMyScoreUpdatedListener() {
                                     @Override
                                     public void myScoreUpdated() {
 
@@ -317,7 +322,7 @@ public class TourActivity extends AppCompatActivity {
             updateTimeUi();
         }
         else {
-            detailsTV.setText("تورنمنت غیر فعال است");
+            detailsTV.setText("اسامی برندگان تورنمنت قبلی");
         }
     }
 

@@ -56,6 +56,8 @@ public class GameSceneActivity extends AppCompatActivity {
     List<Integer> wordIndices;
     String selectedWord;
 
+    TextView moneyTV;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -75,16 +77,7 @@ public class GameSceneActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         blurView.animate().alpha(0).setDuration(BLUR_HIDE_ANIMATION).start();
-        boolean gameFinished = true;
-        for (boolean b : wordsFound) {
-            if (!b) {
-                gameFinished = false;
-                break;
-            }
-        }
-        if (gameFinished) {
-            finish();
-        }
+        initContent();
     }
 
     @Override
@@ -119,11 +112,28 @@ public class GameSceneActivity extends AppCompatActivity {
                             me.setScore(0);
                             me.setMoney(me.getMoney() - price);
                         }
+                        MyApp.getInstance().getNetworkHelper().updateMyScoreInServer(me.getPlayerId()
+                                , me.getPlayerKey(), me.getName(), me.getScore() + me.getMoney()
+                                , new OnMyScoreUpdatedListener() {
+                                    @Override
+                                    public void myScoreUpdated() {
+
+                                    }
+                                });
                         MyApp.getInstance().getDatabaseHelper().updateMe(me);
                         for (int counter = 0; counter < gameLevel.getWords().size(); counter++) {
                             if (!wordsFound[counter]) {
                                 Pair<Boolean, Integer> wordState = new Pair<>(true, counter);
+                                wordIndices = new ArrayList<>();
+                                WordInfo wordInfo = gameLevel.getWords().get(counter);
+                                String wordIndicesStr = wordInfo.getAnswerIndex();
+                                String[] wordIndicesParts = wordIndicesStr.split("-");
+                                for (String wordIndicesPart : wordIndicesParts) {
+                                    int part = Integer.parseInt(wordIndicesPart);
+                                    wordIndices.add(part);
+                                }
                                 doWordFindingFinishJob(wordState);
+                                break;
                             }
                         }
                     }
@@ -132,6 +142,9 @@ public class GameSceneActivity extends AppCompatActivity {
                     }
                 }
             }
+        }
+        else if (requestCode == 789) {
+            this.finish();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -190,6 +203,7 @@ public class GameSceneActivity extends AppCompatActivity {
         tableRV = findViewById(R.id.activity_game_scene_game_board);
         selectedWordContainer = findViewById(R.id.activity_game_scene_selected_word_container);
         selectedWordTV = findViewById(R.id.activity_game_scene_selected_word_text_view);
+        moneyTV = findViewById(R.id.activity_game_scene_money_text_view);
     }
 
     private void initDecoration() {
@@ -263,6 +277,11 @@ public class GameSceneActivity extends AppCompatActivity {
         });
     }
 
+    private void initContent() {
+        Me me = MyApp.getInstance().getDatabaseHelper().getMe();
+        moneyTV.setText((me.getScore() + me.getMoney()) + "");
+    }
+
     private void doWordFindingContinueJob(int blockX, int blockY, int charIndex) {
         if (charIndex < gameLevel.getTableData().length() && !this.nodeUsed[charIndex]) {
             wordPosesX.add(blockX);
@@ -278,7 +297,6 @@ public class GameSceneActivity extends AppCompatActivity {
         if (wordState == null) {
             wordState = checkWordInAnswers(wordIndices);
         }
-
         if (wordState.first) {
             ((FilledTableAdapter) tableRV.getAdapter()).notifyWordFound(wordIndices);
             wordsFound[wordState.second] = true;
@@ -290,23 +308,19 @@ public class GameSceneActivity extends AppCompatActivity {
                         .notifyPlayerFinishedGameLevel(gameLevel.getId());
                 Me me = MyApp.getInstance().getDatabaseHelper().getMe();
                 MyApp.getInstance().getNetworkHelper().updateMyScoreInServer(me.getPlayerId(), me.getPlayerKey()
-                        , me.getName(), me.getScore(), new OnMyScoreUpdatedListener() {
+                        , me.getName(), me.getScore() + me.getMoney(), new OnMyScoreUpdatedListener() {
                             @Override
                             public void myScoreUpdated() {
 
                             }
                         });
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        blurView.animate().alpha(1).setDuration(BLUR_SHOW_ANIMATION).start();
-                        Intent intent = new Intent(GameSceneActivity.this, PresentActivity.class);
-                        intent.putExtra("present-title", "پایان بازی");
-                        intent.putExtra("present-content", "شما بردید !");
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.anim_alpha_in, R.anim.nothing);
-                    }
-                }, 300);
+                blurView.animate().cancel();
+                blurView.animate().alpha(1).setDuration(BLUR_SHOW_ANIMATION).start();
+                Intent intent = new Intent(GameSceneActivity.this, PresentActivity.class);
+                intent.putExtra("present-title", "پایان بازی");
+                intent.putExtra("present-content", "شما بردید !");
+                startActivityForResult(intent, 789);
+                overridePendingTransition(R.anim.anim_alpha_in, R.anim.nothing);
             }
         } else {
             ((FilledTableAdapter) tableRV.getAdapter()).notifySelectionReset();

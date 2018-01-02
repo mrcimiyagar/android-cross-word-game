@@ -10,6 +10,7 @@ import java.util.List;
 
 import kasper.android.cross_word.R;
 import kasper.android.cross_word.back.core.MyApp;
+import kasper.android.cross_word.back.models.database.GameLevels;
 import kasper.android.cross_word.back.models.memory.GameLevel;
 
 public class GameLevelsActivity extends AppCompatActivity {
@@ -24,7 +25,10 @@ public class GameLevelsActivity extends AppCompatActivity {
 
     List<GameLevel> gameLevelList;
 
-    int notDoneGameLevelId = 0;
+    int notDoneGameLevelId = -1;
+
+    boolean nextLevel = false;
+    boolean noMoreLevel = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +42,14 @@ public class GameLevelsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        int notDoneId = notDoneGameLevelId;
         this.initContent();
+        if (nextLevel && !noMoreLevel) {
+            if (notDoneId != notDoneGameLevelId && notDoneGameLevelId >= 0) {
+                GameLevelsActivity.this.startActivity(new Intent(GameLevelsActivity.this
+                        , GameSceneActivity.class).putExtra("game-level-id", notDoneGameLevelId));
+            }
+        }
     }
 
     @Override
@@ -91,11 +102,14 @@ public class GameLevelsActivity extends AppCompatActivity {
 
         if (foundNotDone) {
 
+            noMoreLevel = false;
+
             currentLevelTV.setText("مرحله ی " + counter);
 
             currentLevelTV.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    nextLevel = true;
                     GameLevelsActivity.this.startActivity(new Intent(GameLevelsActivity.this
                             , GameSceneActivity.class).putExtra("game-level-id", notDoneGameLevelId));
                 }
@@ -103,6 +117,7 @@ public class GameLevelsActivity extends AppCompatActivity {
         }
         else {
             currentLevelTV.setText("همه ی مراحل انجام شده است .");
+            noMoreLevel = true;
         }
     }
 }

@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import kasper.android.cross_word.R;
+import kasper.android.cross_word.back.callbacks.OnMyScoreUpdatedListener;
 import kasper.android.cross_word.back.core.MyApp;
 import kasper.android.cross_word.back.models.memory.Me;
 import kasper.android.cross_word.util.IabHelper;
@@ -100,6 +101,15 @@ public class StoreActivity extends AppCompatActivity {
                         me.setMoney(me.getMoney() + 100);
                         MyApp.getInstance().getDatabaseHelper().updateMe(me);
 
+                        MyApp.getInstance().getNetworkHelper().updateMyScoreInServer(me.getPlayerId()
+                                , me.getPlayerKey(), me.getName(), me.getScore() + me.getMoney()
+                                , new OnMyScoreUpdatedListener() {
+                                    @Override
+                                    public void myScoreUpdated() {
+
+                                    }
+                                });
+
                         Toast.makeText(StoreActivity.this, "خرید با موفقیت انجام شد", Toast.LENGTH_SHORT).show();
 
                         loadingView.setVisibility(View.GONE);
@@ -131,28 +141,37 @@ public class StoreActivity extends AppCompatActivity {
         String base64EncodedPublicKey = "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDW9BITfgFogkS5xVQNYRHFY7V+jV1PL4I3U5YJiqb0Bgk/6//As4Wcdyw6nHv7NmMYVG8l4uHgEn6zv12gdgG8qrjXtl1dVc+TNMRuRlmOkcaeCKkNNBAQWdCOdvoGj2BkZ3YqoMWA0kD5/MW/7FyeDBYS21gzb2pI7YjLmRVU17bYvEutGPobGv1+YpMcPNPH+D7OI28P3ECLt5L9tiA7RADd4RypsZ2h5Ne92VkCAwEAAQ==";
         // You can find it in your Bazaar console, in the Dealers section.
         // It is recommended to add more security than just pasting it in your source code;
-        mHelper = new IabHelper(MyApp.getInstance(), base64EncodedPublicKey);
 
-        Log.d(TAG, "Starting setup.");
-        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            public void onIabSetupFinished(IabResult result) {
 
-                try {
+        try {
 
-                    Log.d(TAG, "Setup finished.");
+            mHelper = new IabHelper(MyApp.getInstance(), base64EncodedPublicKey);
 
-                    if (!result.isSuccess()) {
-                        // Oh noes, there was a problem.
-                        Log.d(TAG, "Problem setting up In-app Billing: " + result);
+            Log.d(TAG, "Starting setup.");
+
+            mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+                public void onIabSetupFinished(IabResult result) {
+
+                    try {
+
+                        Log.d(TAG, "Setup finished.");
+
+                        if (!result.isSuccess()) {
+                            // Oh noes, there was a problem.
+                            Log.d(TAG, "Problem setting up In-app Billing: " + result);
+                        }
+
+                        mHelper.queryInventoryAsync(mGotInventoryListener);
+
+                    } catch (Exception ignored) {
+
                     }
-
-                    mHelper.queryInventoryAsync(mGotInventoryListener);
-
-                } catch (Exception ignored) {
-
                 }
-            }
-        });
+            });
+        }
+        catch (Exception ignored) {
+            Toast.makeText(this, "لطفا اپ بازار را نصب کنید و به حساب خود وارد شوید", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -180,14 +199,6 @@ public class StoreActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void onCloseBtnClicked(View view) {
-        onBackPressed();
-    }
-
-    public void onBuyBtnClicked(View view) {
-        mHelper.launchPurchaseFlow(this, SKU_COIN, RC_REQUEST, mPurchaseFinishedListener);
-    }
-
     @Override
     public void onBackPressed() {
         try {
@@ -198,5 +209,13 @@ public class StoreActivity extends AppCompatActivity {
         }
         super.onBackPressed();
         overridePendingTransition(R.anim.nothing, R.anim.anim_alpha_out);
+    }
+
+    public void onCloseBtnClicked(View view) {
+        onBackPressed();
+    }
+
+    public void onBuyBtnClicked(View view) {
+        mHelper.launchPurchaseFlow(this, SKU_COIN, RC_REQUEST, mPurchaseFinishedListener);
     }
 }

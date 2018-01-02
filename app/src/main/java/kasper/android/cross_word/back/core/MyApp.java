@@ -149,7 +149,8 @@ public class MyApp extends Application {
 
             if (me.getPlayerId() >= 0 && me.getPlayerKey().length() > 0 && me.getName().length() > 0 && me.getScore() > 0) {
 
-                this.networkHelper.updateMyScoreInServer(me.getPlayerId(), me.getPlayerKey(), me.getName(), me.getScore() + me.getMoney()
+                this.networkHelper.updateMyScoreInServer(me.getPlayerId(), me.getPlayerKey(), me.getName()
+                        , me.getScore() + me.getMoney()
                         , new OnMyScoreUpdatedListener() {
                     @Override
                     public void myScoreUpdated() {
