@@ -29,6 +29,7 @@ import eightbitlab.com.blurview.RenderScriptBlur;
 import kasper.android.cross_word.R;
 import kasper.android.cross_word.back.callbacks.OnMyScoreUpdatedListener;
 import kasper.android.cross_word.back.core.MyApp;
+import kasper.android.cross_word.back.models.memory.Coins;
 import kasper.android.cross_word.back.models.memory.GameLevel;
 import kasper.android.cross_word.back.models.memory.Me;
 import kasper.android.cross_word.back.models.memory.WordInfo;
@@ -102,19 +103,21 @@ public class GameSceneActivity extends AppCompatActivity {
                 String resultData = data.getExtras().getString("choice");
                 if (resultData != null && resultData.equals("yes")) {
                     Me me = MyApp.getInstance().getDatabaseHelper().getMe();
-                    if (me.getScore() + me.getMoney() > 50) {
-                        if (me.getScore() >= 50) {
-                            me.setScore(me.getScore() - 50);
+                    Coins coins = MyApp.getInstance().getDatabaseHelper().getCoins();
+                    int helpCoins = coins.getHelpCoins();
+                    if (me.getScore() + me.getMoney() > helpCoins) {
+                        if (me.getScore() >= helpCoins) {
+                            me.setScore(me.getScore() - helpCoins);
                         }
                         else {
-                            int price = 50;
+                            int price = helpCoins;
                             price -= me.getScore();
                             me.setScore(0);
                             me.setMoney(me.getMoney() - price);
                         }
                         MyApp.getInstance().getNetworkHelper().updateMyScoreInServer(me.getPlayerId()
                                 , me.getPlayerKey(), me.getName(), me.getScore() + me.getMoney()
-                                , new OnMyScoreUpdatedListener() {
+                                , me.getAccountNumber(), new OnMyScoreUpdatedListener() {
                                     @Override
                                     public void myScoreUpdated() {
 
@@ -308,7 +311,8 @@ public class GameSceneActivity extends AppCompatActivity {
                         .notifyPlayerFinishedGameLevel(gameLevel.getId());
                 Me me = MyApp.getInstance().getDatabaseHelper().getMe();
                 MyApp.getInstance().getNetworkHelper().updateMyScoreInServer(me.getPlayerId(), me.getPlayerKey()
-                        , me.getName(), me.getScore() + me.getMoney(), new OnMyScoreUpdatedListener() {
+                        , me.getName(), me.getScore() + me.getMoney(), me.getAccountNumber()
+                        , new OnMyScoreUpdatedListener() {
                             @Override
                             public void myScoreUpdated() {
 

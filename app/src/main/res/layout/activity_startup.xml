@@ -37,17 +37,14 @@
                 android:layout_height="match_parent"
                 app:blurOverlayColor="@android:color/transparent">
 
-                <TextView
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
                     android:elevation="4dp"
                     tools:targetApi="lollipop"
                     android:gravity="center"
-                    android:textColor="@android:color/white"
-                    android:text="Logo"
-                    android:textSize="40sp"
-                    android:textStyle="bold"/>
+                    android:src="@drawable/logo"/>
 
             </eightbitlab.com.blurview.BlurView>
 

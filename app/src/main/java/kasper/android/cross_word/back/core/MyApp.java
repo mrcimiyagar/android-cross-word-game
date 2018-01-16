@@ -4,11 +4,14 @@ import android.app.Application;
 
 import java.util.List;
 
+import kasper.android.cross_word.back.callbacks.OnGameGuideReadListener;
 import kasper.android.cross_word.back.callbacks.OnGameLevelsCheckedListener;
 import kasper.android.cross_word.back.callbacks.OnGameLevelsReadListener;
+import kasper.android.cross_word.back.callbacks.OnHelpCoinsReadListener;
 import kasper.android.cross_word.back.callbacks.OnMessagesCheckedListener;
 import kasper.android.cross_word.back.callbacks.OnMessagesReadListener;
 import kasper.android.cross_word.back.callbacks.OnMyScoreUpdatedListener;
+import kasper.android.cross_word.back.callbacks.OnStoreCoinsReadListener;
 import kasper.android.cross_word.back.callbacks.OnTourDataReadListener;
 import kasper.android.cross_word.back.callbacks.OnWordsCheckedListener;
 import kasper.android.cross_word.back.callbacks.OnWordsReadListener;
@@ -16,7 +19,9 @@ import kasper.android.cross_word.back.callbacks.OnAppLoadCompleteListener;
 import kasper.android.cross_word.back.helpers.DatabaseHelper;
 import kasper.android.cross_word.back.helpers.DisplayHelper;
 import kasper.android.cross_word.back.helpers.NetworkHelper;
+import kasper.android.cross_word.back.models.memory.Coins;
 import kasper.android.cross_word.back.models.memory.GameLevel;
+import kasper.android.cross_word.back.models.memory.Guide;
 import kasper.android.cross_word.back.models.memory.Me;
 import kasper.android.cross_word.back.models.memory.Message;
 import kasper.android.cross_word.back.models.memory.Tournament;
@@ -57,7 +62,7 @@ public class MyApp extends Application {
         this.checkUpdatesOnGameContent(callback);
     }
 
-    private final boolean[] syncTaskState = new boolean[5];
+    private final boolean[] syncTaskState = new boolean[7];
 
     private void checkUpdatesOnGameContent(final OnAppLoadCompleteListener callback) {
         for (int counter = 0; counter < this.syncTaskState.length; counter++) {
@@ -145,15 +150,16 @@ public class MyApp extends Application {
                 }
             });
 
-            Me me = this.databaseHelper.getMe();
+            final Me me = this.databaseHelper.getMe();
 
-            if (me.getPlayerId() >= 0 && me.getPlayerKey().length() > 0 && me.getName().length() > 0 && me.getScore() > 0) {
+            if (me.getPlayerId() >= 0 && me.getPlayerKey().length() > 0 && me.getName().length() > 0 && me.getScore() + me.getMoney() > 0) {
 
                 this.networkHelper.updateMyScoreInServer(me.getPlayerId(), me.getPlayerKey(), me.getName()
-                        , me.getScore() + me.getMoney()
+                        , me.getScore() + me.getMoney(), me.getAccountNumber()
                         , new OnMyScoreUpdatedListener() {
                     @Override
                     public void myScoreUpdated() {
+
                         MyApp.this.signMiniSyncTaskAsDone(4, callback);
                     }
                 });
@@ -162,6 +168,38 @@ public class MyApp extends Application {
 
                 MyApp.this.signMiniSyncTaskAsDone(4, callback);
             }
+
+            final Guide mGuide = this.databaseHelper.getGuide();
+
+            this.networkHelper.readGameGuideFromServer(new OnGameGuideReadListener() {
+                @Override
+                public void gameGuideRead(String guide) {
+                    mGuide.setContent(guide);
+                    MyApp.getInstance().getDatabaseHelper().updateGuide(mGuide);
+                    MyApp.this.signMiniSyncTaskAsDone(5, callback);
+                }
+            });
+
+            final Coins mCoins = this.databaseHelper.getCoins();
+
+            this.networkHelper.readStoreCoinsFromServer(new OnStoreCoinsReadListener() {
+                @Override
+                public void storeCoinsRead(int sCoins) {
+                    if (sCoins >= 0) {
+                        mCoins.setStoreCoins(sCoins);
+                    }
+                    MyApp.this.networkHelper.readHelpCoinsFromServer(new OnHelpCoinsReadListener() {
+                        @Override
+                        public void onHelpCoinsRead(int hCoins) {
+                            if (hCoins >= 0) {
+                                mCoins.setHelpCoins(hCoins);
+                            }
+                            MyApp.getInstance().getDatabaseHelper().updateCoins(mCoins);
+                            MyApp.this.signMiniSyncTaskAsDone(6, callback);
+                        }
+                    });
+                }
+            });
         }
         else {
             callback.onlineSyncTaskCompleted();

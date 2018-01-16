@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +47,7 @@ public class TourActivity extends AppCompatActivity {
 
     int totalDays;
 
-    int days, hours, mins, seconds;
+    int days, hours, minutes, seconds;
 
     Handler timerHandler;
 
@@ -148,7 +147,8 @@ public class TourActivity extends AppCompatActivity {
 
                     MyApp.getInstance().getDatabaseHelper().updateMe(me);
 
-                    MyApp.getInstance().getNetworkHelper().addTourPlayerToServer(me.getName(), new OnTourPlayerAddedListener() {
+                    MyApp.getInstance().getNetworkHelper().addTourPlayerToServer(me.getName(), me.getAccountNumber()
+                            , new OnTourPlayerAddedListener() {
                         @Override
                         public void tourPlayerAdded(final long playerId, final String passkey) {
 
@@ -157,35 +157,36 @@ public class TourActivity extends AppCompatActivity {
 
                             MyApp.getInstance().getDatabaseHelper().updateMe(me);
 
-                            if (me.getScore() > 0) {
+                            if (me.getScore() + me.getMoney() > 0) {
 
                                 MyApp.getInstance().getNetworkHelper().updateMyScoreInServer(playerId, passkey
-                                        , me.getName(), me.getScore() + me.getMoney(), new OnMyScoreUpdatedListener() {
-                                    @Override
-                                    public void myScoreUpdated() {
-
-                                        MyApp.getInstance().getDatabaseHelper().updateMe(me);
-
-                                        MyApp.getInstance().getNetworkHelper().readTourDataFromServer(new OnTourDataReadListener() {
+                                        , me.getName(), me.getScore() + me.getMoney(), me.getAccountNumber()
+                                        , new OnMyScoreUpdatedListener() {
                                             @Override
-                                            public void tourDataRead(Tournament tournament) {
-
-                                                me.setCurrTour(tournament);
-                                                me.setLastTour(tournament);
+                                            public void myScoreUpdated() {
 
                                                 MyApp.getInstance().getDatabaseHelper().updateMe(me);
 
-                                                runOnUiThread(new Runnable() {
+                                                MyApp.getInstance().getNetworkHelper().readTourDataFromServer(new OnTourDataReadListener() {
                                                     @Override
-                                                    public void run() {
+                                                    public void tourDataRead(Tournament tournament) {
 
-                                                        Toast.makeText(TourActivity.this, "ثبت نام انجام شد", Toast.LENGTH_SHORT).show();
+                                                        me.setCurrTour(tournament);
+                                                        me.setLastTour(tournament);
 
-                                                        initContent();
+                                                        MyApp.getInstance().getDatabaseHelper().updateMe(me);
+
+                                                        runOnUiThread(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+
+                                                                Toast.makeText(TourActivity.this, "ثبت نام انجام شد", Toast.LENGTH_SHORT).show();
+
+                                                                initContent();
+                                                            }
+                                                        });
                                                     }
                                                 });
-                                            }
-                                        });
                                     }
                                 });
                             }
@@ -226,7 +227,8 @@ public class TourActivity extends AppCompatActivity {
 
                 if (me.getLastTour().getId() == me.getCurrTour().getId()) {
 
-                    MyApp.getInstance().getNetworkHelper().readMyTourDataFromServer(me.getPlayerId(), new OnMyTourDataReadListener() {
+                    MyApp.getInstance().getNetworkHelper().readMyTourDataFromServer(me.getPlayerId(), me.getPlayerKey()
+                            , new OnMyTourDataReadListener() {
                         @Override
                         public void myTourDataRead(final TourPlayer tourPlayer) {
 
@@ -308,7 +310,7 @@ public class TourActivity extends AppCompatActivity {
             }
 
             if (leftMillis >= 60000) {
-                mins = (int)(leftMillis / 60000);
+                minutes = (int)(leftMillis / 60000);
                 leftMillis = leftMillis % 60000;
             }
 
@@ -335,11 +337,11 @@ public class TourActivity extends AppCompatActivity {
 
                 if (seconds < 0) {
                     seconds = 59;
-                    mins--;
+                    minutes--;
                 }
 
-                if (mins < 0) {
-                    mins = 59;
+                if (minutes < 0) {
+                    minutes = 59;
                     hours--;
                 }
 
@@ -352,7 +354,7 @@ public class TourActivity extends AppCompatActivity {
                     initContent();
                 }
 
-                detailsTV.setText("تورنمنت " + totalDays + " روزه ," + "\n" + days + "," + hours + ":" + mins + ":" + seconds + " باقی مانده است");
+                detailsTV.setText("تورنمنت " + totalDays + " روزه ," + "\n" + days + "," + hours + ":" + minutes + ":" + seconds + " باقی مانده است");
 
                 updateTimeUi();
             }

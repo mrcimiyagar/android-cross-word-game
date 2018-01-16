@@ -117,7 +117,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onGuideBtnClicked(View view) {
-
+        pausePageBV.animate().alpha(1).setDuration(BLUR_SHOW_ANIMATION).start();
+        startActivity(new Intent(this, GuideActivity.class));
+        overridePendingTransition(R.anim.anim_alpha_in, R.anim.nothing);
     }
 
     // ***

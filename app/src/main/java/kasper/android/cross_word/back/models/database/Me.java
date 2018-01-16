@@ -15,6 +15,7 @@ public class Me extends RealmObject {
     private int money;
     private Tournament lastTour;
     private Tournament currTour;
+    private String accountNumber;
 
     public long getPlayerId() {
         return playerId;
@@ -78,5 +79,13 @@ public class Me extends RealmObject {
 
     public void setCurrTour(Tournament currTour) {
         this.currTour = currTour;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 }

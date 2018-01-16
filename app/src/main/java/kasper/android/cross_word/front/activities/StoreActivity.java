@@ -7,11 +7,13 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import kasper.android.cross_word.R;
 import kasper.android.cross_word.back.callbacks.OnMyScoreUpdatedListener;
 import kasper.android.cross_word.back.core.MyApp;
+import kasper.android.cross_word.back.models.memory.Coins;
 import kasper.android.cross_word.back.models.memory.Me;
 import kasper.android.cross_word.util.IabHelper;
 import kasper.android.cross_word.util.IabResult;
@@ -98,12 +100,12 @@ public class StoreActivity extends AppCompatActivity {
                         // (for example, credit 50 gold coins to player's character)
 
                         Me me = MyApp.getInstance().getDatabaseHelper().getMe();
-                        me.setMoney(me.getMoney() + 100);
+                        me.setMoney(me.getMoney() + coins.getStoreCoins());
                         MyApp.getInstance().getDatabaseHelper().updateMe(me);
 
                         MyApp.getInstance().getNetworkHelper().updateMyScoreInServer(me.getPlayerId()
                                 , me.getPlayerKey(), me.getName(), me.getScore() + me.getMoney()
-                                , new OnMyScoreUpdatedListener() {
+                                , me.getAccountNumber(), new OnMyScoreUpdatedListener() {
                                     @Override
                                     public void myScoreUpdated() {
 
@@ -123,10 +125,15 @@ public class StoreActivity extends AppCompatActivity {
 
     int requestedIndex = 0;
 
+    private TextView coinsCountTV;
+    private Coins coins;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
+
+        coinsCountTV = findViewById(R.id.activity_store_coins_count_text_view);
 
         loadingView = findViewById(R.id.activity_store_loading_view);
         loadingView.setOnTouchListener(new View.OnTouchListener() {
@@ -137,6 +144,10 @@ public class StoreActivity extends AppCompatActivity {
         });
 
         loadingView.setVisibility(View.VISIBLE);
+
+        coins = MyApp.getInstance().getDatabaseHelper().getCoins();
+
+        coinsCountTV.setText(coins.getStoreCoins() + " سکه");
 
         String base64EncodedPublicKey = "MIHNMA0GCSqGSIb3DQEBAQUAA4G7ADCBtwKBrwDW9BITfgFogkS5xVQNYRHFY7V+jV1PL4I3U5YJiqb0Bgk/6//As4Wcdyw6nHv7NmMYVG8l4uHgEn6zv12gdgG8qrjXtl1dVc+TNMRuRlmOkcaeCKkNNBAQWdCOdvoGj2BkZ3YqoMWA0kD5/MW/7FyeDBYS21gzb2pI7YjLmRVU17bYvEutGPobGv1+YpMcPNPH+D7OI28P3ECLt5L9tiA7RADd4RypsZ2h5Ne92VkCAwEAAQ==";
         // You can find it in your Bazaar console, in the Dealers section.

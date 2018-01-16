@@ -24,26 +24,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4505e8f1-d9bd-4223-b8d6-ac1b965d721d" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnGameGuideReadListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnHelpCoinsReadListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnStoreCoinsReadListener.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Coins.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Guide.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Coins.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Guide.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GuideActivity.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_guide.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/fileHashes.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/fileHashes/resourceHashesCache.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/fileHashes/resourceHashesCache.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/classAnalysis.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/jarAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/jarAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/javaCompile.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/javaCompile.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/taskHistory.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/javaCompile/taskJars.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/javaCompile/taskJars.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" afterPath="$PROJECT_DIR$/.gradle/4.1/taskHistory/taskHistory.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/keyhan1376.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/keyhan1376.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/release/app-release.apk" afterPath="$PROJECT_DIR$/app/release/app-release.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-mdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/core/MyApp.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/core/MyApp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/DatabaseHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/DatabaseHelper.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/NetworkHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/NetworkHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GameLevelsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GameLevelsActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Me.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Me.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Me.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Me.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GameSceneActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GameSceneActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/SettingsActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/SettingsActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/StoreActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/StoreActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/TourActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/TourActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/adapters/FilledTableAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/adapters/FilledTableAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_game_scene.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_game_scene.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_startup.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_startup.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_store.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_store.xml" />
     </list>
     <ignored path="CrossWordAndroidGame.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -96,8 +117,8 @@
         <option value="valueResourceFile" />
         <option value="resourceFile" />
         <option value="layoutResourceFile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -1889,17 +1910,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/rectound_white_tl.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/rectound_white_tr.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/adapter_filled_table.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GameQuestionsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/PresentActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/SettingsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/WordDetailsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/adapters/MessagesAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/adapters/WordsAdapter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnTourDataReadListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnTourPlayersReadListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/adapters/TourPlayerDataAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/adapters/GameQuestsAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/adapter_game_quests.xml" />
@@ -1912,7 +1922,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_messages.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_words.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_tour.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/components/CustomButton2.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game_questions.xml" />
@@ -1921,25 +1930,37 @@
         <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Tournament.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game_levels.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Me.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Me.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_use_help.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/UseHelpActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/util/Base64.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_store.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/DatabaseHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_present.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GameLevelsActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/adapters/FilledTableAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_game_scene.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/NetworkHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnMyAccNumberUpdatedListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/SettingsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/TourActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_startup.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnGameGuideReadListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Me.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Me.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Guide.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Guide.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GuideActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_guide.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnStoreCoinsReadListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnHelpCoinsReadListener.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Coins.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Coins.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/NetworkHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_store.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/StoreActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GameSceneActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/core/MyApp.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/TourActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/StoreActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/DatabaseHelper.java" />
       </list>
     </option>
   </component>
@@ -1965,7 +1986,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2014,102 +2034,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cross-word-android-game" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kasper" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cross_word" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="front" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cross-word-android-game" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kasper" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cross_word" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="front" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activities" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cross-word-android-game" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kasper" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.android.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="cross_word" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="back" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2292,7 +2219,7 @@
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="D:/AndroidSDK" />
     <property name="settings.editor.selected.configurable" value="http.proxy" />
-    <property name="device.picker.selection" value="F5AZFG24E603" />
+    <property name="device.picker.selection" value="192.168.43.154:5555" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/layout" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="android.profiler.active" value="true" />
@@ -2309,17 +2236,17 @@
       <recent name="kasper.android.cross_word.front.activities" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="kasper.android.cross_word.back.models.memory" />
       <recent name="kasper.android.cross_word.front.activities" />
       <recent name="kasper.android.cross_word.front.adapters" />
       <recent name="kasper.android.cross_word.back.models.database" />
       <recent name="kasper.android.cross_word.back.helpers" />
-      <recent name="kasper.android.cross_word.front.components" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Desktop\cross-word-android-game\app\src\main\res\drawable" />
       <recent name="F:\Desktop\cross-word-android-game\app\src\main\java\kasper\android\cross_word" />
       <recent name="F:\Desktop\cross-word-android-game\app\src\main\aidl" />
       <recent name="F:\Desktop\cross-word-android-game\app\src\main\res\layout" />
-      <recent name="F:\Desktop\cross-word-android-game\app\src\main\res\drawable" />
       <recent name="F:\Desktop\cross-word-android-game\app\src\main\java\kasper\android\cross_word\front\adapters" />
     </key>
   </component>
@@ -2405,8 +2332,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1514889753452" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516109946993" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2453,8 +2379,7 @@
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
       </Profilers>
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1514889753452" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516109946993" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2486,6 +2411,27 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
+      <method />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
       <method />
     </configuration>
     <configuration default="true" type="JarApplication" factoryName="JAR Application">
@@ -2615,8 +2561,7 @@
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
       <method>
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1514889753454" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1516109946995" />
       </method>
     </configuration>
     <list size="1">
@@ -2658,7 +2603,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2672,12 +2617,12 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.54738563" sideWeight="0.49092284" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7254902" sideWeight="0.49092284" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28517398" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28517398" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -2709,124 +2654,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="39" />
+      <option name="time" value="43" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnTourDataReadListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnTourPlayerAddedListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="55" lean-forward="false" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/TourPlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="36" column="24" lean-forward="false" selection-start-line="36" selection-start-column="24" selection-end-line="36" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnMyTourDataReadListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="23" lean-forward="false" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnMyScoreUpdatedListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="26" lean-forward="false" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/adapter_offleg.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="25" column="45" lean-forward="false" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="60" lean-forward="false" selection-start-line="15" selection-start-column="60" selection-end-line="15" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_messages.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="32" column="26" lean-forward="false" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/MessagesActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-31">
-          <caret line="25" column="42" lean-forward="true" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_words.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="19" column="22" lean-forward="false" selection-start-line="19" selection-start-column="22" selection-end-line="19" selection-end-column="22" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/WordsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="64" column="19" lean-forward="false" selection-start-line="64" selection-start-column="19" selection-end-line="64" selection-end-column="19" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/components/CustomButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="25" column="33" lean-forward="true" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/custom_button_2.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="21" lean-forward="true" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/RoundKornerLayouts-0.3.1.aar/0486077aa0c6ed601050dc82347d48df/jars/classes.jar!/com/jcminarro/roundkornerlayout/RoundKornerRelativeLayout.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -2912,20 +2744,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Me.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="65" column="0" lean-forward="true" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Me.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="57" column="21" lean-forward="true" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/aidl/com/android/vending/billing/IInAppBillingService.aidl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2938,37 +2756,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="66" column="30" lean-forward="false" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
-          <folding>
-            <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onResume#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onBackPressed#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onMessagesBtnClicked#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onAccountBtnClicked#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onStoreBtnClicked#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onOfflineGameBtnClicked#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onWordsBtnClicked#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onTourBtnClicked#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#onGuideBtnClicked#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#initBlurViews#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#showBtn#0;class#MainActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_store.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="72" column="31" lean-forward="false" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tour.xml">
@@ -2998,32 +2785,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="76" column="59" lean-forward="true" selection-start-line="76" selection-start-column="59" selection-end-line="76" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_use_help.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="37" column="13" lean-forward="true" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GameLevelsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="27" column="31" lean-forward="false" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3031,13 +2796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="93" column="16" lean-forward="false" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/UseHelpActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -3055,7 +2813,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="246">
           <caret line="139" column="76" lean-forward="false" selection-start-line="139" selection-start-column="41" selection-end-line="139" selection-end-column="76" />
-          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/util/IabHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="266" column="32" lean-forward="true" selection-start-line="266" selection-start-column="32" selection-end-line="266" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnMyAccNumberUpdatedListener.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="37" column="40" lean-forward="false" selection-start-line="37" selection-start-column="40" selection-end-line="37" selection-end-column="40" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2">
@@ -3064,36 +2839,248 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="26" column="66" lean-forward="true" selection-start-line="26" selection-start-column="66" selection-end-line="26" selection-end-column="66" />
+        <state relative-caret-position="221">
+          <caret line="51" column="57" lean-forward="false" selection-start-line="51" selection-start-column="57" selection-end-line="51" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/close.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_startup.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="40" column="36" lean-forward="false" selection-start-line="40" selection-start-column="36" selection-end-line="40" selection-end-column="36" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/StartupActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="27" column="43" lean-forward="false" selection-start-line="27" selection-start-column="43" selection-end-line="27" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnGameGuideReadListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="37" lean-forward="false" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Me.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Me.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="33" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Guide.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="32" lean-forward="false" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Guide.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="121" column="72" lean-forward="true" selection-start-line="121" selection-start-column="72" selection-end-line="121" selection-end-column="72" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/util/IabHelper.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/TourActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="266" column="32" lean-forward="true" selection-start-line="266" selection-start-column="32" selection-end-line="266" selection-end-column="32" />
+        <state relative-caret-position="85">
+          <caret line="47" column="18" lean-forward="true" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+          <folding>
+            <element signature="method#onCreate#0;class#TourActivity#0" expanded="false" />
+            <element signature="method#onBackPressed#0;class#TourActivity#0" expanded="false" />
+            <element signature="method#initViews#0;class#TourActivity#0" expanded="false" />
+            <element signature="method#initTable#0;class#TourActivity#0" expanded="false" />
+            <element signature="method#initContent#0;class#TourActivity#0" expanded="false" />
+            <element signature="method#updateTimeUi#0;class#TourActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="464">
+          <caret line="80" column="57" lean-forward="true" selection-start-line="80" selection-start-column="57" selection-end-line="80" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/WordsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="25" column="38" lean-forward="true" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_words.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="49" column="25" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="49" selection-end-column="25" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_guide.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="14" column="8" lean-forward="false" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GuideActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="18" column="56" lean-forward="false" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnStoreCoinsReadListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="35" lean-forward="false" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/DatabaseHelper.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/callbacks/OnHelpCoinsReadListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="438" column="47" lean-forward="false" selection-start-line="438" selection-start-column="47" selection-end-line="438" selection-end-column="47" />
+        <state relative-caret-position="119">
+          <caret line="7" column="36" lean-forward="false" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/database/Coins.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="32" lean-forward="false" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding>
+            <element signature="e#296#297#0" expanded="true" />
+            <element signature="e#345#346#0" expanded="true" />
+            <element signature="e#389#390#0" expanded="true" />
+            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#454#455#0" expanded="true" />
+            <element signature="e#501#502#0" expanded="true" />
+            <element signature="e#543#544#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/models/memory/Coins.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="18" lean-forward="false" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/NetworkHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="707" column="3" lean-forward="true" selection-start-line="707" selection-start-column="3" selection-end-line="707" selection-end-column="3" />
+          <folding>
+            <element signature="method#isNetworkAvailable#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#recheckGameLevelsFromServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#readGameLevelsFromServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#recheckMessagesFromServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#readMessagesFromServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#recheckWordsFromServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#readWordsFromServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#readTourDataFromServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#addTourPlayerToServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#readTourPlayersFromServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#readMyTourDataFromServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#updateMyScoreInServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#readGameGuideFromServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#readStoreCoinsFromServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#readHelpCoinsFromServer#0;class#NetworkHelper#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/StoreActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1343">
+          <caret line="102" column="73" lean-forward="false" selection-start-line="102" selection-start-column="73" selection-end-line="102" selection-end-column="73" />
+          <folding>
+            <element signature="e#5099#5266#0" expanded="true" />
+            <element signature="e#5265#5266#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_store.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="28" column="69" lean-forward="false" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/UseHelpActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="14" column="56" lean-forward="true" selection-start-line="14" selection-start-column="56" selection-end-line="14" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_use_help.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="23" column="41" lean-forward="false" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/GameSceneActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="295" column="74" lean-forward="false" selection-start-line="295" selection-start-column="74" selection-end-line="295" selection-end-column="74" />
+        <state relative-caret-position="369">
+          <caret line="114" column="43" lean-forward="false" selection-start-line="114" selection-start-column="43" selection-end-line="114" selection-end-column="43" />
           <folding>
-            <element signature="method#onCreate#0;class#GameSceneActivity#0" expanded="false" />
-            <element signature="method#onResume#0;class#GameSceneActivity#0" expanded="false" />
-            <element signature="method#onBackPressed#0;class#GameSceneActivity#0" expanded="false" />
             <element signature="method#onHelpBtnClicked#0;class#GameSceneActivity#0" expanded="false" />
             <element signature="method#onStoreBtnClicked#0;class#GameSceneActivity#0" expanded="false" />
             <element signature="method#onGameQuestsBtnClicked#0;class#GameSceneActivity#0" expanded="false" />
@@ -3113,76 +3100,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_startup.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="34" column="42" lean-forward="false" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/core/MyApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="263">
-          <caret line="152" column="33" lean-forward="false" selection-start-line="152" selection-start-column="33" selection-end-line="152" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/StartupActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="25" column="55" lean-forward="false" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
-          <folding>
-            <element signature="method#onCreate#0;class#StartupActivity#0" expanded="false" />
-            <element signature="method#loadBlurView#0;class#StartupActivity#0" expanded="false" />
-            <element signature="method#gotoMainActivity#0;class#StartupActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/StoreActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
-          <caret line="97" column="29" lean-forward="true" selection-start-line="97" selection-start-column="29" selection-end-line="97" selection-end-column="29" />
+          <caret line="196" column="86" lean-forward="false" selection-start-line="196" selection-start-column="86" selection-end-line="196" selection-end-column="86" />
           <folding>
-            <element signature="method#onCreate#0;class#StoreActivity#0" expanded="false" />
-            <element signature="method#onActivityResult#0;class#StoreActivity#0" expanded="false" />
-            <element signature="method#onDestroy#0;class#StoreActivity#0" expanded="false" />
-            <element signature="method#onBackPressed#0;class#StoreActivity#0" expanded="false" />
-            <element signature="method#onBuyBtnClicked#0;class#StoreActivity#0" expanded="false" />
+            <element signature="method#onCreate#0;class#MyApp#0" expanded="false" />
+            <element signature="method#startMachine#0;class#MyApp#0" expanded="false" />
+            <element signature="method#signMiniSyncTaskAsDone#0;class#MyApp#0" expanded="false" />
+            <element signature="method#checkSyncTaskCompletion#0;class#MyApp#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/NetworkHelper.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/back/helpers/DatabaseHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="511" column="38" lean-forward="true" selection-start-line="511" selection-start-column="38" selection-end-line="511" selection-end-column="38" />
+        <state relative-caret-position="306">
+          <caret line="196" column="87" lean-forward="false" selection-start-line="196" selection-start-column="87" selection-end-line="196" selection-end-column="87" />
           <folding>
-            <element signature="method#isNetworkAvailable#0;class#NetworkHelper#0" expanded="false" />
-            <element signature="method#recheckGameLevelsFromServer#0;class#NetworkHelper#0" expanded="false" />
-            <element signature="method#readGameLevelsFromServer#0;class#NetworkHelper#0" expanded="false" />
-            <element signature="method#recheckMessagesFromServer#0;class#NetworkHelper#0" expanded="false" />
-            <element signature="method#readMessagesFromServer#0;class#NetworkHelper#0" expanded="false" />
-            <element signature="method#recheckWordsFromServer#0;class#NetworkHelper#0" expanded="false" />
-            <element signature="method#readWordsFromServer#0;class#NetworkHelper#0" expanded="false" />
-            <element signature="method#readTourDataFromServer#0;class#NetworkHelper#0" expanded="false" />
-            <element signature="method#addTourPlayerToServer#0;class#NetworkHelper#0" expanded="false" />
-            <element signature="method#readMyTourDataFromServer#0;class#NetworkHelper#0" expanded="false" />
-            <element signature="method#updateMyScoreInServer#0;class#NetworkHelper#0" expanded="false" />
+            <element signature="method#DatabaseHelper#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#getMe#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#updateMe#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#getGuide#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#updateGuide#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#getCoins#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#updateCoins#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#addGameLevels#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#mergeGameLevelsWith#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#addMessages#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#mergeMessagesWith#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#addWords#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#mergeWordsWith#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#recheckGameLevels#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#recheckGameLevels#1;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#recheckMessages#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#recheckMessages#1;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#recheckWords#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#recheckWords#1;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#getGameLevels#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#getMessages#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#getWords#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#getGameLevelById#0;class#DatabaseHelper#0" expanded="false" />
+            <element signature="method#notifyPlayerFinishedGameLevel#0;class#DatabaseHelper#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kasper/android/cross_word/front/activities/TourActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="162" column="85" lean-forward="false" selection-start-line="162" selection-start-column="85" selection-end-line="162" selection-end-column="85" />
-          <folding />
         </state>
       </provider>
     </entry>

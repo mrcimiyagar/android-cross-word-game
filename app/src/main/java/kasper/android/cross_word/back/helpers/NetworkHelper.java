@@ -11,12 +11,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import kasper.android.cross_word.back.callbacks.OnGameGuideReadListener;
 import kasper.android.cross_word.back.callbacks.OnGameLevelsCheckedListener;
 import kasper.android.cross_word.back.callbacks.OnGameLevelsReadListener;
+import kasper.android.cross_word.back.callbacks.OnHelpCoinsReadListener;
 import kasper.android.cross_word.back.callbacks.OnMessagesCheckedListener;
 import kasper.android.cross_word.back.callbacks.OnMessagesReadListener;
 import kasper.android.cross_word.back.callbacks.OnMyScoreUpdatedListener;
 import kasper.android.cross_word.back.callbacks.OnMyTourDataReadListener;
+import kasper.android.cross_word.back.callbacks.OnStoreCoinsReadListener;
 import kasper.android.cross_word.back.callbacks.OnTourDataReadListener;
 import kasper.android.cross_word.back.callbacks.OnTourPlayerAddedListener;
 import kasper.android.cross_word.back.callbacks.OnTourPlayersReadListener;
@@ -55,6 +58,10 @@ public class NetworkHelper {
     private final String methodReadTopTourPlayers = "ReadTopTourPlayers";
     private final String methodReadMyTourData = "ReadMyTourData";
     private final String methodEditMyScore = "EditTourPlayer";
+    private final String mainDatasControllerName = "MainDatas";
+    private final String methodReadGuide = "ReadGuide";
+    private final String methodReadStoreCoins = "ReadStoreCoinPack";
+    private final String methodReadHelpCoins = "ReadHelpCoinPack";
 
     public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager = (ConnectivityManager) MyApp.getInstance()
@@ -449,7 +456,7 @@ public class NetworkHelper {
         }).start();
     }
 
-    public void addTourPlayerToServer(final String name, final OnTourPlayerAddedListener callback) {
+    public void addTourPlayerToServer(final String name, final String accNum, final OnTourPlayerAddedListener callback) {
 
         new Thread(new Runnable() {
             @Override
@@ -459,7 +466,7 @@ public class NetworkHelper {
 
                     String urlStr = serverAddress + "/api/" + tourPlayersControllerName
                             + "/" + methodAddTourPlayer + "?firstKey=" + playerFirstKey + "&secondKey="
-                            + playerSecondKey + "&name=" + name;
+                            + playerSecondKey + "&name=" + name + "&accNum=" + accNum;
 
                     Log.d(LOG_TAG, urlStr);
 
@@ -541,7 +548,7 @@ public class NetworkHelper {
         }).start();
     }
 
-    public void readMyTourDataFromServer(final long id, final OnMyTourDataReadListener callback) {
+    public void readMyTourDataFromServer(final long id, final String passkey, final OnMyTourDataReadListener callback) {
 
         new Thread(new Runnable() {
             @Override
@@ -551,7 +558,7 @@ public class NetworkHelper {
 
                     String urlStr = serverAddress + "/api/" + tourPlayersControllerName
                             + "/" + methodReadMyTourData + "?firstKey=" + playerFirstKey + "&secondKey="
-                            + playerSecondKey + "&id=" + id;
+                            + playerSecondKey + "&id=" + id + "&passkey=" + passkey;
 
                     Log.d(LOG_TAG, urlStr);
 
@@ -589,7 +596,7 @@ public class NetworkHelper {
     }
 
     public void updateMyScoreInServer(final long id, final String passkey, final String name, final int score
-            , final OnMyScoreUpdatedListener callback) {
+                                      , final String accNum, final OnMyScoreUpdatedListener callback) {
 
         new Thread(new Runnable() {
             @Override
@@ -600,9 +607,7 @@ public class NetworkHelper {
                     String urlStr = serverAddress + "/api/" + tourPlayersControllerName
                             + "/" + methodEditMyScore + "?firstKey=" + playerFirstKey + "&secondKey="
                             + playerSecondKey + "&id=" + id + "&passkey=" + passkey + "&name=" + name
-                            + "&score=" + score;
-
-                    Log.d("KasperLogger", passkey);
+                            + "&score=" + score + "&accNum=" + accNum;
 
                     Log.d(LOG_TAG, urlStr);
 
@@ -622,6 +627,116 @@ public class NetworkHelper {
                 } catch (Exception ignored) {
                     ignored.printStackTrace();
                     callback.myScoreUpdated();
+                }
+            }
+        }).start();
+    }
+
+    public void readGameGuideFromServer(final OnGameGuideReadListener callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    String urlStr = serverAddress + "/api/" + mainDatasControllerName
+                            + "/" + methodReadGuide + "?firstKey=" + playerFirstKey + "&secondKey="
+                            + playerSecondKey;
+
+                    Log.d(LOG_TAG, urlStr);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(urlStr)
+                            .addHeader("Cache-Control", "no-cache")
+                            .build();
+                    request.cacheControl().noCache();
+                    Response response = client.newCall(request).execute();
+                    String result = response.body().string();
+
+                    result = result.substring(1, result.length() - 1);
+
+                    Log.d(LOG_TAG, result);
+
+                    callback.gameGuideRead(result);
+
+                } catch (Exception ignored) {
+                    ignored.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public void readStoreCoinsFromServer(final OnStoreCoinsReadListener callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    String urlStr = serverAddress + "/api/" + mainDatasControllerName
+                            + "/" + methodReadStoreCoins + "?firstKey=" + playerFirstKey + "&secondKey="
+                            + playerSecondKey;
+
+                    Log.d(LOG_TAG, urlStr);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(urlStr)
+                            .addHeader("Cache-Control", "no-cache")
+                            .build();
+                    request.cacheControl().noCache();
+                    Response response = client.newCall(request).execute();
+                    String result = response.body().string();
+
+                    result = result.substring(1, result.length() - 1);
+
+                    Log.d(LOG_TAG, result);
+
+                    callback.storeCoinsRead(Integer.parseInt(result));
+
+                } catch (Exception ignored) {
+                    ignored.printStackTrace();
+                    callback.storeCoinsRead(-1);
+                }
+            }
+        }).start();
+    }
+
+    public void readHelpCoinsFromServer(final OnHelpCoinsReadListener callback) {
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+
+                    String urlStr = serverAddress + "/api/" + mainDatasControllerName
+                            + "/" + methodReadHelpCoins + "?firstKey=" + playerFirstKey + "&secondKey="
+                            + playerSecondKey;
+
+                    Log.d(LOG_TAG, urlStr);
+
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder()
+                            .url(urlStr)
+                            .addHeader("Cache-Control", "no-cache")
+                            .build();
+                    request.cacheControl().noCache();
+                    Response response = client.newCall(request).execute();
+                    String result = response.body().string();
+
+                    result = result.substring(1, result.length() - 1);
+
+                    Log.d(LOG_TAG, result);
+
+                    callback.onHelpCoinsRead(Integer.parseInt(result));
+
+                } catch (Exception ignored) {
+                    ignored.printStackTrace();
+                    callback.onHelpCoinsRead(-1);
                 }
             }
         }).start();

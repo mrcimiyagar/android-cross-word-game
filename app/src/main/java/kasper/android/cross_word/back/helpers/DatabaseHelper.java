@@ -9,7 +9,10 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmList;
+import io.realm.RealmObject;
+import kasper.android.cross_word.back.models.database.Coins;
 import kasper.android.cross_word.back.models.database.GameLevels;
+import kasper.android.cross_word.back.models.database.Guide;
 import kasper.android.cross_word.back.models.database.Me;
 import kasper.android.cross_word.back.models.database.Messages;
 import kasper.android.cross_word.back.models.database.WordInfo;
@@ -56,6 +59,17 @@ public class DatabaseHelper {
             me.setCurrTour(dCurrTour);
         }
 
+        if (realm.where(Guide.class).count() == 0) {
+            Guide guide = realm.createObject(Guide.class);
+            guide.setContent("");
+        }
+
+        if (realm.where(Coins.class).count() == 0) {
+            Coins coins = realm.createObject(Coins.class);
+            coins.setStoreCoins(100);
+            coins.setHelpCoins(100);
+        }
+
         if (realm.where(GameLevels.class).count() == 0) {
             realm.createObject(GameLevels.class);
         }
@@ -86,6 +100,7 @@ public class DatabaseHelper {
         mMe.setName(dMe.getName());
         mMe.setScore(dMe.getScore());
         mMe.setMoney(dMe.getMoney());
+        mMe.setAccountNumber(dMe.getAccountNumber());
 
         kasper.android.cross_word.back.models.database.Tournament dLastTour = dMe.getLastTour();
         Tournament mLastTour = new Tournament();
@@ -123,6 +138,7 @@ public class DatabaseHelper {
         dMe.setName(me.getName());
         dMe.setScore(me.getScore());
         dMe.setMoney(me.getMoney());
+        dMe.setAccountNumber(me.getAccountNumber());
 
         Tournament mLastTour = me.getLastTour();
         kasper.android.cross_word.back.models.database.Tournament dLastTour = dMe.getLastTour();
@@ -144,6 +160,46 @@ public class DatabaseHelper {
         dCurrTour.setTotalDays(mCurrTour.getTotalDays());
         dMe.setCurrTour(dCurrTour);
 
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    public kasper.android.cross_word.back.models.memory.Guide getGuide() {
+        Realm realm = Realm.getDefaultInstance();
+        Guide dGuide = realm.where(Guide.class).findFirst();
+        kasper.android.cross_word.back.models.memory.Guide mGuide =
+                new kasper.android.cross_word.back.models.memory.Guide();
+        mGuide.setContent(dGuide.getContent());
+        realm.close();
+        return mGuide;
+    }
+
+    public void updateGuide(kasper.android.cross_word.back.models.memory.Guide guide) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        Guide dGuide = realm.where(Guide.class).findFirst();
+        dGuide.setContent(guide.getContent());
+        realm.commitTransaction();
+        realm.close();
+    }
+
+    public kasper.android.cross_word.back.models.memory.Coins getCoins() {
+        Realm realm = Realm.getDefaultInstance();
+        Coins dCoins = realm.where(Coins.class).findFirst();
+        kasper.android.cross_word.back.models.memory.Coins mCoins =
+                new kasper.android.cross_word.back.models.memory.Coins();
+        mCoins.setStoreCoins(dCoins.getStoreCoins());
+        mCoins.setHelpCoins(dCoins.getHelpCoins());
+        realm.close();
+        return mCoins;
+    }
+
+    public void updateCoins(kasper.android.cross_word.back.models.memory.Coins mCoins) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        Coins dCoins = realm.where(Coins.class).findFirst();
+        dCoins.setStoreCoins(mCoins.getStoreCoins());
+        dCoins.setHelpCoins(mCoins.getHelpCoins());
         realm.commitTransaction();
         realm.close();
     }
